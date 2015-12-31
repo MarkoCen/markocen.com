@@ -1,0 +1,23 @@
+{
+  "name": "my-blog",
+  "version": "1.0.0",
+  "description": "my personal blog site",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarkoCen/my-blog.git"
+  },
+  "author": "Marko Cen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarkoCen/my-blog/issues"
+  },
+  "homepage": "https://github.com/MarkoCen/my-blog#readme",
+  "dependencies": {
+    "express": "^4.13.3",
+    "mongoose": "^4.3.4"
+  }
+}
