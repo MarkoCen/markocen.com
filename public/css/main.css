@@ -9,13 +9,76 @@
   position: relative;
   width: 100%;
   height: 100%;
+  z-index: -1;
   -webkit-filter: brightness(40%);
   filter: brightness(40%);
 }
-.main .top-header-panel .main-title {
+.main .top-header-panel .top-btns {
   position: absolute;
-  color: white;
-  z-index: 10;
+  top: 70%;
   text-align: center;
-  top: 40%;
+  z-index: 10;
+}
+.main .top-header-panel .top-btns > a {
+  margin-left: .5rem;
+  margin-right: .5rem;
+}
+.main .main-panel {
+  text-align: center;
+}
+.main .main-panel > div {
+  margin-bottom: 1rem;
+}
+.main .main-panel > div:first-child {
+  margin-top: 3rem;
+}
+.main .main-panel > div:last-child {
+  margin-bottom: 10rem;
+}
+.main .main-panel > div.avatar {
+  margin-bottom: 1.5rem;
+  padding-top: 2rem;
+}
+.main .main-panel > div.avatar img {
+  animation: avatar-pulse 1s infinite;
+}
+@keyframes avatar-pulse {
+  0% {
+    border-width: 6px;
+    border-color: rgba(133, 133, 133, 0.6);
+  }
+  50% {
+    border-width: 6px;
+    border-color: rgba(133, 133, 133, 0.2);
+  }
+  100% {
+    border-width: 6px;
+    border-color: rgba(133, 133, 133, 0.6);
+  }
+}
+.main .main-panel > div.avatar .contacts {
+  margin-top: 1rem;
+}
+.main .main-panel > div.avatar .contacts button,
+.main .main-panel > div.avatar .contacts a {
+  color: white;
+  margin-left: .5rem;
+  margin-right: .5rem;
+}
+.main .main-panel > div.intro {
+  margin-top: 4rem;
+  margin-bottom: 6rem;
+  text-align: justify;
+}
+.main .main-panel > div.keywords {
+  margin-top: 1rem;
+}
+.main .main-panel > div.keywords span {
+  padding: .4rem;
+  font-size: .85rem;
+  margin-right: .7rem;
+  margin-bottom: .65rem;
+}
+.main .main-panel .progress {
+  margin-top: 7px;
 }

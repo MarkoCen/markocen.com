@@ -2,20 +2,13 @@
  * Created by Marko Cen on 12/31/2015.
  */
 
-var express = require('express');
-var app = express();
+var db = require('./modules/db');
+var constants = require('./modules/constants');
 
-app.set('view engine', 'jade');
-app.set('views', './views');
-
-app.use(express.static('./public'));
-
-app.listen(5555);
-
-app.get('/', function (req, res) {
-    res.render('main');
+db.on('connected', function(){
+    console.log('DB CONNECTED: ' + constants.DB_CON);
+    require('./modules/config')();
 });
 
-app.get('/test', function (req, res) {
-    res.json({ test: 'testString'})
-})
+db.open(constants.DB_CON);
+

@@ -1,0 +1,195 @@
+.blogs pre {
+  border: none;
+}
+.blogs .quote {
+  border: 1px solid lightgray;
+  position: relative;
+  background-color: white;
+  padding: 1.5rem 1.5rem;
+  border-radius: .2rem;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1) inset;
+}
+.blogs .quote:before,
+.blogs .quote:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  top: 50%;
+  bottom: 0;
+  left: 10px;
+  right: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+.blogs .quote:after {
+  right: 10px;
+  left: auto;
+  transform: skew(8deg) rotate(3deg);
+}
+.blogs .link {
+  color: #075BFF;
+  cursor: pointer;
+}
+.blogs .link:hover {
+  color: #075BFF;
+}
+.blogs .link:focus {
+  color: #075BFF;
+}
+.blogs .code-inline {
+  font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, sans-serif;
+  background-color: #eee;
+  border-radius: .2rem;
+  padding: .16rem .4rem;
+  color: #222426;
+}
+.blogs .em {
+  font-weight: bold;
+}
+.blogs .highlighter {
+  background-color: #FFF686;
+  padding: .1rem .2rem;
+}
+.blogs .image-block {
+  position: relative;
+  width: 100%;
+  padding: 1.5rem 1rem 2.5rem 1rem;
+  text-align: center;
+  overflow: hidden;
+}
+.blogs .image-block > img {
+  border: 1px solid whitesmoke;
+  -webkit-box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
+}
+.blogs .ctag {
+  margin-right: .5rem;
+  cursor: pointer;
+}
+@keyframes ctag-hover {
+  50% {
+    background-color: #3498DB;
+  }
+}
+.blogs .ctag:hover {
+  animation: ctag-hover 0.5s infinite;
+}
+.blogs .blog-header {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  height: 4rem;
+}
+.blogs .blog-index .blog-item {
+  overflow: hidden;
+  padding: .5rem 2rem 1rem 2rem;
+  border-radius: 4px;
+  border: 1px solid lightgrey;
+  -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
+  transition: all .2s;
+  cursor: pointer;
+}
+.blogs .blog-index .blog-item:hover {
+  -webkit-box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.3);
+}
+.blogs .blog-index .blog-item:hover .read-more {
+  top: 0;
+}
+.blogs .blog-index .blog-item .blog-sub-title {
+  color: grey;
+  font-style: italic;
+}
+.blogs .blog-index .blog-item .tag-area {
+  padding: 0;
+  margin-bottom: 1rem;
+}
+.blogs .blog-index .blog-item .description {
+  padding: 0;
+  text-align: justify;
+  margin-bottom: 1rem;
+}
+.blogs .blog-index .blog-item .read-more {
+  transition: all .2s;
+  position: absolute;
+  border-bottom-left-radius: .2rem;
+  top: -100%;
+  right: 0;
+  z-index: -1;
+  background-color: #2C3E50;
+  padding: .5rem;
+}
+.blogs .blog-index .blog-item .read-more a {
+  text-decoration: none;
+  color: white;
+}
+@media screen and (max-width: 767px) {
+  .blogs .blog-index .blog-item .read-more {
+    top: 0;
+  }
+}
+.blogs .blog-categories .search-input {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid lightgrey;
+}
+.blogs .blog-categories .catalog {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid lightgrey;
+}
+@media screen and (max-width: 767px) {
+  .blogs .blog-categories {
+    display: none;
+  }
+}
+.blogs .home-btn {
+  position: fixed;
+  top: .5rem;
+  left: 1rem;
+  color: #95A5A6;
+  opacity: .4;
+  transition: all .2s;
+}
+.blogs .home-btn:hover {
+  opacity: 1;
+}
+.blogs .blog-content {
+  margin-top: 2rem;
+}
+.blogs .blog-content .blog-sub-title {
+  margin-top: .5rem;
+  color: grey;
+  font-style: italic;
+}
+.blogs .blog-content .tag-area {
+  padding: 0;
+  margin-bottom: 2rem;
+}
+.blogs .blog-content .context {
+  padding: 0;
+  text-align: justify;
+}
+.blogs .blog-content .context div > * {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.blogs .blog-content .context div > *:first-child {
+  margin-top: 0rem;
+}
+.blogs .blog-content .context h3,
+.blogs .blog-content .context h4,
+.blogs .blog-content .context h5 {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+.blogs .blog-content .context #disqus_thread {
+  margin-top: 2rem;
+}

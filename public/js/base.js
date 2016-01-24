@@ -13,6 +13,23 @@
         return httpRequestBase('POST', url, data);
     };
 
+    MC.scrollTo = function(ele, interval){
+        var docEle = _.isNode(ele) ? ele : document.querySelector(ele);
+        var delay = interval || 200;
+        var top = docEle.offsetTop;
+        var difference = top - document.body.scrollTop;
+        var perTick = difference / delay * 10;
+
+        var timeoutID = setTimeout(function() {
+            document.body.scrollTop += perTick;
+            if (document.body.scrollTop === top){
+                clearTimeout(timeoutID);
+                return;
+            }
+            MC.scrollTo(docEle, delay - 10);
+        }, 10);
+    };
+
     function MCElement(ele){
         this.ele = ele;
         return this;
@@ -27,6 +44,37 @@
             })
         }
         return this;
+    };
+
+    MCElement.prototype.addClass = function (className) {
+        if(_.isNodeList(this.ele)){
+            _.forEach(this.ele, function(ele){
+                ele.className += " " + className;
+            })
+        }
+        return this;
+    };
+
+    MCElement.prototype.removeClass = function (className) {
+        if(_.isNodeList(this.ele)){
+            _.forEach(this.ele, function(ele){
+                var classes = ele.className.split(" ");
+                var index = classes.indexOf(className);
+                if(index > -1){
+                    classes.splice(index, 1);
+                    ele.className = classes.join(' ');
+                }
+            })
+        }
+        return this;
+    };
+
+    MCElement.prototype.on = function(eventName, eventCallback){
+        if(_.isFunction(eventCallback)){
+            _.forEach(this.ele, function(ele){
+                ele.addEventListener(eventName, eventCallback, false);
+            })
+        }
     };
 
     function httpRequestBase(method, url, data){
@@ -110,6 +158,13 @@
         },
         isString: function(string){
             return typeof string === 'string'
+        },
+        isUndefined: function(obj){
+            return obj === undefined;
+        },
+        isNode: function (node) {
+            return node && node.nodeType &&
+                (node.nodeType === 1 || node.nodeType === 11);
         },
         isNodeList: function(eles){
             return eles instanceof window.NodeList;

@@ -1,8 +1,97 @@
 extends ./templates/main.layout.jade
 
+block footerScript
+    script(src="dist/main.js")
+
 block mainBody
     div.top-header-panel
-        h1.main-title I, Marko
+        div.col-sm-4.col-sm-offset-4.top-btns
+            a.btn.btn-success.about About Me
+            a.btn.btn-info.blog Blog / 博客
         video(class="background-video" muted autoplay loop)
             source(src="media/intro.mp4" type="video/mp4")
 
+    div.container.main-panel
+        div.avatar.col-sm-12
+            img(src="./img/avatar.jpeg" class="circle-badge")
+            h2 { name: 'Marko' }
+            div.contacts.col-sm-12
+                a(href="mailto:markocen@gmail.com" class="btn" style="background-color:#CB1F1F;")
+                    i.fa.fa-envelope-o.fa-2x
+                a(href="http://www.github.com/MarkoCen" class="btn" style="background-color:#323131;")
+                    i.fa.fa-github.fa-2x
+                a(href="https://www.linkedin.com/in/markocen" class="btn" style="background-color:#007AB5;")
+                    i.fa.fa-linkedin.fa-2x
+        div.intro.col-sm-10.col-sm-offset-1
+            div.well.well-lg
+                p.
+                    I'm a javaScript enthusiast, javaScript not just a script language only run on browser. With the help of out-of-browser javaScript technologies, I believe every high quality web application could be built in a pure javaScript environment.
+                    Now I heavily use AngularJS and NodeJS in my daily routine, and I have couple of part-time projects built on MEAN.
+                    You could check my skills at the bottom of this page.
+
+        div.col-sm-12
+            div.col-sm-2
+                label JavaScript
+            div.col-sm-10
+                div.progress.active
+                    div(class="progress-bar" style="width: 95%;background-color:#F1C40F;")
+        div.col-sm-12
+            div.col-sm-2
+                label NodeJs
+            div.col-sm-10
+                div.progress.active
+                    div(class="progress-bar" style="width: 80%;background-color:#80BD01;")
+        div.col-sm-12
+            div.col-sm-2
+                label C#
+            div.col-sm-10
+                div.progress.active
+                    div(class="progress-bar" style="width: 60%;background-color:#0F67A7;")
+        div.col-sm-12
+            div.col-sm-2
+                label HTML5
+            div.col-sm-10
+                div.progress.active
+                    div(class="progress-bar" style="width: 85%;background-color:#E84C3D;")
+        div.col-sm-12
+            div.col-sm-2
+                label CSS3
+            div.col-sm-10
+                div.progress.active
+                    div(class="progress-bar" style="width: 85%;background-color:#33A9DC;")
+        div.col-sm-12
+            div.col-sm-2
+                label MongoDB
+            div.col-sm-10
+                div.progress.active
+                    div(class="progress-bar" style="width: 70%;background-color:#69B241;")
+        div.col-sm-12
+            div.col-sm-2
+                label Redis
+            div.col-sm-10
+                div.progress.active
+                    div(class="progress-bar" style="width: 40%;background-color:#D82F27;")
+        div.keywords.col-sm-12
+            div.col-sm-2
+                label Keywords
+            div(class="col-sm-10" style="text-align: left;")
+                span.badge Angular
+                span.badge React
+                span.badge jQuery
+                span.badge Underscore
+                span.badge Lodash
+                span.badge Bootstrap
+                span.badge Semantic UI
+                span.badge Material Design
+                span.badge Express
+                span.badge Loopback
+                span.badge Meteor
+                span.badge Socket.io
+                span.badge Gulp
+                span.badge Webpack
+                span.badge NPM
+                span.badge Bower
+                span.badge MongoDB
+                span.badge Redis
+                span.badge Git
+                span.badge Mercurial

@@ -1,0 +1,244 @@
+div
+    p.quote.
+        Nowadays, more and more websites supporting two or more languages.<br><br>
+        i18n (internationalization) is a solution to localize a web application
+        into different languages and cultures, this is not simple process
+        especially you have a large web application.
+        However, if you are using nodejs, thanks to many open-source i18n node middleware,
+        you can deploy i18n solution without too much pain. This blog provides a simple
+        demo to show how to build a multi-language website by using node and its i18n module.
+
+    h3 A Simple Website with Multi-language Supported
+
+    p.
+        In this demo, we would build a simple website with <a class="link" href="http://expressjs.com/">express</a>
+        and <a class="link" href="http://jade-lang.com/reference/">jade</a>.
+        It has two languages supported (English and Chinese). In main page,
+        user can choose the language options, and after choosing,
+        we would like to keep the user option into cookie, therefore,
+        we can use it for the rest of pages. The file structure is:
+
+    pre.
+        i18n_demo
+            |-- locales /* Used to store language json files*/
+            |     |--en.json
+            |     |--zh.json
+            |-- views
+            |     |-- main.jade
+            |     |-- contact.jade
+            |-- node_modules
+            |-- package.json
+            |-- server.js
+
+    h3 Modules Dependency
+
+    p.
+        <a class="link" href="https://github.com/mashpie/i18n-node">i18n</a>
+        : a light-weight i18n translation module for nodejs. It supports dynamic json storage and different node template engine.<br>
+        <a class="link" href="http://expressjs.com/">express</a> : a popuplar framework for nodejs. Using a framework is optional, we can just build this demo by plain nodejs.<br>
+        <a class="link" href="https://github.com/expressjs/session">express-session</a> : we need to use session to store user language option.<br>
+        <a class="link" href="https://github.com/expressjs/cookie-parser">cookie-parser</a> : use cookie-parser to edit cookie object in user session.<br><br>
+        The completed Package.json file:<br>
+
+    pre
+        code.json.
+            {
+                "name": "i18n_demo",
+                "version": "1.0.0",
+                "main": "server.js",
+                "author": "Marko Cen",
+                "license": "MIT",
+                "dependencies": {
+                    "cookie-parser": "^1.3.5",
+                    "express": "^4.13.1",
+                    "express-session": "^1.11.3",
+                    "i18n": "^0.5.0",
+                    "jade": "^1.11.0"
+                }
+            }
+
+    h3 App Configuration
+
+    p.
+        First, let's setup our server side code:
+
+    ol
+        li
+            p we would create a express app and listen on port 8080
+            pre
+                code.javascript.
+                    var express = require('express');
+                    var app = express();
+
+                    app.listen(8080);
+        li
+            p In order to use jade, we need to set app view engine to jade
+            pre
+                code.javascript.
+                    app.set('view engine', 'jade');
+        li
+            p.
+                Now, let's mount our session middleware and cookie-parser middleware.
+                Please be aware, they need to use same secret string
+            pre
+                code.javascript.
+                    var session = require('express-session');
+                    var cookieParser = require('cookie-parser');
+
+                    app.use(cookieParser("i18n_demo"));
+
+                    app.use(session({
+                        secret: "i18n_demo",
+                        resave: true,
+                        saveUninitialized: true,
+                        cookie: { maxAge: 60000 }
+                    }));
+        li
+            p.
+                Config i18n and mount it to our app. Here, the mounting order
+                between i18n and cookieParser is important, we always want i18n mounted <span class="em">after</span> cookieParser
+            pre
+                code.javascript.
+                    var i18n = require('i18n');
+
+                    i18n.configure({
+                        //define how many languages we would support in our application
+                        locales:['en', 'zh'],
+
+                        //define the path to language json files, default is /locales
+                        directory: __dirname + '/locales',
+
+                        //define the default language
+                        defaultLocale: 'en',
+
+                        // define a custom cookie name to parse locale settings from
+                        cookie: 'i18n'
+                    });
+
+                    app.use(cookieParser("i18n_demo"));
+
+                    app.use(session({
+                        secret: "i18n_demo",
+                        resave: true,
+                        saveUninitialized: true,
+                        cookie: { maxAge: 60000 }
+                    }));
+
+                    //init i18n after cookie-parser
+                    app.use(i18n.init);
+        li
+            p.
+                Finally, add language json files in locales folder.
+                Since we provide two languages: English and Chinese, we should add two json files:
+                <span class="code-inline">en.json</span> and <span class="code-inline">zh.json</span>
+
+    h3 Views
+
+    p.
+        In this application, we only have two views, <span class="code-inline">main.jade</span> and <span class="code-inline">contact.jade</span>,
+        In <span class="code-inline">main.jade</span>, we would allow user to choose their language, and in
+        <span class="code-inline">contact.jade</span> we would show some information in the language user just choose.
+
+    pre
+        code.jade.
+            //main.jade
+
+                doctype html
+
+                html(lang='en')
+                    head
+                        title i18n Demo
+                        meta(charset="utf-8")
+                    body
+
+                        p #&#123;i18n.__("Welcome")&#125;
+
+                        p
+                            a(href="/contact") Contact Information
+
+                        p #&#123;i18n.__("Language")&#125;
+
+                        p
+                            ul
+                                li
+                                    a(href="/zh") Chinese
+                                li
+                                    a(href="/en") English
+            //contact.jade
+
+                doctype html
+                    html
+                        head
+                            title Contact
+                            meta(charset="utf-8")
+                    body
+                        p #&#123;i18n.__("Contact Information")&#125;
+
+    p.
+        Notice the <span class="code-inline">i18n.__</span> function,
+        it would load string from different language json files base on the language user choose, and insert it into paragraph tag
+
+    h3 Routes
+
+    p.
+        The last step is to setup the routes, we have four routes:
+
+    ul
+        li <span class="code-inline">/</span> get main page
+        li <span class="code-inline">/contact</span> get main page
+        li <span class="code-inline">/en</span> get main page
+        li <span class="code-inline">/cn</span> get main page
+
+    pre
+        code.javascript.
+            app.get('/', function (req, res) {
+                res.setLocale(req.cookies.i18n);
+                res.render('main', {
+                i18n: res
+                })
+            });
+
+            app.get('/contact', function (req, res) {
+                res.render('contact', {
+                i18n: res
+                })
+            });
+
+            app.get('/zh', function (req, res) {
+                res.cookie('i18n', 'zh');
+                res.redirect('/')
+            });
+
+            app.get('/en', function (req, res) {
+                res.cookie('i18n', 'en');
+                res.redirect('/')
+            });
+
+    p.
+        In <span class="code-inline">/zh</span> and <span class="code-inline">/en</span> routes, we use cookie-parser to set i18n field to related language value,
+        then in <span class="code-inline">/</span> route, we use res.setLocale function which provided by i18n middleware to dynamic
+        set the language our site used. When rendering the template, we pass response object as a option data into the template, therefore, we can use <span class="code-inline">res.__</span> function in our template
+
+    h3 JSON Files
+
+    p.
+        Till now, everything is hooked up, and the last but most important thing is editing our json file:
+
+    pre
+        code.json.
+            //en.json
+            {
+                "Welcome": "Hi, welcome to our site",
+                "Language": "Please choose your language",
+                "Contact Information" : "1 Elf rd, Unicorn Village, Wonderland, Earth"
+            }
+
+            //zh.json
+            {
+                "Welcome": "欢迎",
+                "Language": "请选择语言",
+                "Contact Information" : "一号 精灵路, 独角兽村, 幸福国, 地球"
+            }
+
+    p.
+        both files should have same fields, and only the field values are different
