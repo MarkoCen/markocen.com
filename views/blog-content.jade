@@ -7,7 +7,8 @@ block mainBody
         h1.blog-title #{article.title}
         h6.blog-sub-title #{formatTime(article.date)} by #{article.author}
         div.tag-area.col-sm-12
-            span.ctag.label.label-default Node.js
+            each tag in article.tags
+                span.ctag.label.label-default #{tag}
         div.context.col-sm-12
             != content
         div.col-sm-12

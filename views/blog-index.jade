@@ -1,8 +1,21 @@
 extends ./templates/blog.layout
 
 block mainBody
-    header.blog-header.col-sm-12
-        h2.col-sm-10.col-sm-offset-1 Blog
+    header.blog-header.col-sm-10.col-sm-offset-1
+        div.col-sm-5
+            a(href="/blog") BLOG 博客
+            span &nbsp;&nbsp;|&nbsp;&nbsp;
+            a(href="/#")
+                i.fa.fa-rss
+            span &nbsp;&nbsp;
+            a(href="/")
+                i.fa.fa-home
+        div.search-input.col-sm-3
+            div.input-group
+                input(type="text", class="form-control", placeholder="Search articles...")
+                span.input-group-btn
+                    button.search-submit.btn.btn-primary
+                        i.fa.fa-search
     div.blog-index.col-sm-8
         each article in articles
             div(class="blog-item col-sm-10 col-sm-offset-2", data-article-id=article.articleId)
@@ -15,11 +28,3 @@ block mainBody
                         a(class="ctag label label-default", href="http://localhost:5555/blog?tag=" + tag) #{tag}
                 div.description.col-sm-12
                     p #{article.description}
-    div.blog-categories.col-sm-4
-        div.search-input.col-sm-8.input-group
-            input(type="text", class="form-control", placeholder="Search articles...")
-            span.input-group-btn
-                button.search-submit.btn.btn-primary
-                    i.fa.fa-search
-        div.catalog.col-sm-8
-            label <i class="fa fa-tag fa-lg"></i> &nbsp;&nbsp; Catalog
