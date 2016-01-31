@@ -28,3 +28,12 @@ block mainBody
                         a(class="ctag label label-default", href="http://localhost:5555/blog?tag=" + tag) #{tag}
                 div.description.col-sm-12
                     p #{article.description}
+    div.col-sm-4
+        div.col-sm-12
+            i.fa.fa-tags.fa-2x
+            label &nbsp;&nbsp;&nbsp; TAGS | 标签
+        div.col-sm-12
+            each val, key in tagLabels
+                span.label.label-primary.tag-label
+                    span.tag-name #{key}
+                    span.tag-num (#{val})

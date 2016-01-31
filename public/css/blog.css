@@ -1,5 +1,28 @@
+@keyframes ctag-hover {
+  50% {
+    background-color: #3498DB;
+  }
+}
+@keyframes tagLabel-hover {
+  50% {
+    background-color: #18BC9C;
+  }
+}
 .blogs pre {
   border: none;
+}
+.blogs .tag-label {
+  display: inline-block;
+  padding: .4rem;
+  margin-top: .5rem;
+  margin-right: .5rem;
+  cursor: pointer;
+}
+.blogs .tag-label:hover {
+  animation: tagLabel-hover 0.5s infinite;
+}
+.blogs .tag-label:last-child {
+  margin-right: 0;
 }
 .blogs .quote {
   border: 1px solid lightgray;
@@ -71,11 +94,6 @@
 .blogs .ctag {
   margin-right: .5rem;
   cursor: pointer;
-}
-@keyframes ctag-hover {
-  50% {
-    background-color: #3498DB;
-  }
 }
 .blogs .ctag:hover {
   animation: ctag-hover 0.5s infinite;

@@ -22,7 +22,8 @@ var articles = db.model('articles', articleSchema, 'articles');
 module.exports = {
     findAllArticles: findAllArticles,
     findArticleById: findArticleById,
-    findArticlesByTag: findArticlesByTag
+    findArticlesByTag: findArticlesByTag,
+    getTagLabels: getTagLabels
 };
 
 function __checkArticleCachedExpired(){
@@ -38,6 +39,39 @@ function __updateArticleCache(){
         }, function (err) {
             reject(err);
         })
+    })
+}
+
+function getTagLabels(){
+    return new Promise(function (resolve, reject) {
+
+        function calcLabels(data){
+            var tagLabels = {};
+            if(_.isArray(data)){
+                 _.chain(data)
+                    .map(function(item){return item.tags})
+                    .flatten()
+                    .forEach(function(tag){
+                        if(_.isNil(tagLabels[tag])){
+                            tagLabels[tag] = 1;
+                        }else{
+                            tagLabels[tag] += 1
+                        }
+                    })
+                    .value();
+            }
+            return tagLabels;
+        }
+
+        if(__checkArticleCachedExpired()){
+            __updateArticleCache().then(function(){
+                resolve(calcLabels(articleCached.data))
+            }, function(err){
+                reject(err);
+            })
+        }else{
+            resolve(calcLabels(articleCached.data));
+        }
     })
 }
 

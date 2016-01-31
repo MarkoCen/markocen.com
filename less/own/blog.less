@@ -1,6 +1,33 @@
 .blogs{
+  @keyframes ctag-hover {
+    0% {}
+    50% {
+      background-color: #3498DB;
+    }
+    100% {  }
+  }
+  @keyframes tagLabel-hover {
+    0% {}
+    50% {
+      background-color: #18BC9C;
+    }
+    100% {  }
+  }
   pre{
     border: none;
+  }
+  .tag-label{
+    display:inline-block;
+    padding: .4rem;
+    margin-top: .5rem;
+    margin-right: .5rem;
+    cursor: pointer;
+    &:hover{
+      animation: tagLabel-hover .5s infinite;
+    }
+    &:last-child{
+      margin-right: 0;
+    }
   }
   .quote{
     border: 1px solid lightgray;
@@ -65,13 +92,6 @@
     }
   }
   .ctag{
-    @keyframes ctag-hover {
-      0% {}
-      50% {
-        background-color: #3498DB;
-      }
-      100% {  }
-    }
     &:hover{
       animation: ctag-hover .5s infinite;
     }
