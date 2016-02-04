@@ -11,13 +11,18 @@ blogRouter.get('/', function (req, res) {
         models.findArticlesByTag(req.query.tag) : models.findAllArticles();
 
     promise.then(function (articles) {
-        res.render('blog-index', {
-            articles: articles,
-            formatTime: util.formatTime
+        models.getTagLabels().then(function(tagLabels){
+            res.render('blog-index', {
+                articles: articles,
+                formatTime: util.formatTime,
+                tagLabels: tagLabels
+            });
+        }, function(){
+            res.status(404).json('No Blogs Found!')
         });
     }, function () {
         res.status(404).json('No Blogs Found!')
-    })   ;
+    });
 });
 
 blogRouter.get('/:blogTitle', function (req, res) {
