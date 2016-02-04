@@ -31,7 +31,7 @@ function __checkArticleCachedExpired(){
 
 function __updateArticleCache(){
     return new Promise((resolve, reject) =>{
-        articles.find({}, {}, { lean: true}).exec().then(function (results) {
+        articles.find({}, {}, { sort: '-date', lean: true}).exec().then(function (results) {
             articleCached.data = results;
             articleCached.time = Date.now();
             resolve();

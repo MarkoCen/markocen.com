@@ -8,10 +8,10 @@
 .main .top-header-panel .background-video {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   z-index: -1;
-  -webkit-filter: brightness(40%);
-  filter: brightness(40%);
+  -webkit-filter: brightness(80%);
+  filter: brightness(80%);
 }
 .main .top-header-panel .top-btns {
   position: absolute;

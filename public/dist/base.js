@@ -46,18 +46,41 @@
         return this;
     };
 
+    MCElement.prototype.hasClass = function (className) {
+        var classList = [];
+        classList = classList.concat(this.ele.className.split(" "));
+        return classList.indexOf(className) > -1;
+    }
+
     MCElement.prototype.addClass = function (className) {
+        if( _.isNode(this.ele)){
+            this.ele.className += " " + className;
+        }
         if(_.isNodeList(this.ele)){
-            _.forEach(this.ele, function(ele){
+            _.forEach(this.ele, function (ele) {
                 ele.className += " " + className;
             })
         }
         return this;
     };
 
+    MCElement.prototype.find = function (query) {
+        if(_.isNode(this.ele)){
+            return new MCElement(document.querySelectorAll(query));
+        }
+    };
+
     MCElement.prototype.removeClass = function (className) {
+        if(_.isNode(this.ele)){
+            var classes = this.ele.className.split(" ");
+            var index = classes.indexOf(className);
+            if(index > -1){
+                classes.splice(index, 1);
+                this.ele.className = classes.join(' ');
+            }
+        }
         if(_.isNodeList(this.ele)){
-            _.forEach(this.ele, function(ele){
+            _.forEach(this.ele, function (ele) {
                 var classes = ele.className.split(" ");
                 var index = classes.indexOf(className);
                 if(index > -1){
@@ -72,7 +95,7 @@
     MCElement.prototype.on = function(eventName, eventCallback){
         if(_.isFunction(eventCallback)){
             _.forEach(this.ele, function(ele){
-                ele.addEventListener(eventName, eventCallback, false);
+                ele.addEventListener(eventName, eventCallback.bind(ele), false);
             })
         }
     };
