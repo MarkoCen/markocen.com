@@ -2,56 +2,74 @@ var gulp = require('gulp')
     , concat = require('gulp-concat')
     , concatCSS = require('gulp-concat-css')
     , less = require('gulp-less')
+    , postCSS = require('gulp-postcss')
+    , postSourceMaps = require('gulp-sourcemaps')
+    , autoPrefixer = require('autoprefixer')
     , minifyCSS = require('gulp-minify-css')
     , rename = require('gulp-rename')
     , path = require('path')
-    , watch = require('gulp-watch')
+    , watch = require('gulp-watch');
+
+var base = [
+    path.join(__dirname, 'node_modules/jquery/dist/jquery.min.js'),
+    path.join(__dirname, 'node_modules/bootstrap/dist/js/bootstrap.min.js')
+];
 
 gulp.task('less-vendor', function () {
-    return gulp.src('./less/vendor/*')
-        .pipe(watch('./less/vendor/*', function(){
-            console.log('FILE-CHANGED, START BUILDING: less-vendor')
-        }))
-        .pipe(less({
-            paths: [ path.join(__dirname, 'less', 'vendor')]
-        }))
-        .pipe(concatCSS('vendor.css'))
-        .pipe(minifyCSS({compatibility: 'ie8'}))
-        .pipe(gulp.dest(path.join(__dirname, 'public/css')))
+    watch('./less/vendor/*', {}, function () {
+        console.log('[LESS-VENDOR] Start Building');
+        gulp.src('./less/vendor/*')
+            .pipe(less({
+                paths: [ path.join(__dirname, 'less', 'vendor')]
+            }))
+            .pipe(concatCSS('vendor.css'))
+            .pipe(postSourceMaps.init())
+            .pipe(postCSS([ autoPrefixer({ browsers: ['last 3 versions'] }) ]))
+            .pipe(postSourceMaps.write('.'))
+            .pipe(minifyCSS({compatibility: 'ie8'}))
+            .pipe(gulp.dest(path.join(__dirname, 'public/css')))
+    });
 })
 
 gulp.task('less-own', function () {
-    return gulp.src('./less/own/*.less')
-        .pipe(watch('./less/own/*.less', function () {
-            console.log('FILE-CHANGED, START BUILDING: less-own')
-        }))
-        .pipe(less())
-        //.pipe(minifyCSS({compatibility: 'ie8'}))
-        .pipe(gulp.dest(path.join(__dirname, 'public/css')))
+    watch('./less/own/*.less', {}, function () {
+        gulp.src('./less/own/*.less')
+            .pipe(less())
+            .pipe(postSourceMaps.init())
+            .pipe(postCSS([ autoPrefixer({ browsers: ['last 3 versions'] }) ]))
+            .pipe(postSourceMaps.write('.'))
+            //.pipe(minifyCSS({compatibility: 'ie8'}))
+            .pipe(gulp.dest(path.join(__dirname, 'public/css')))
+    });
 })
 
 gulp.task('less-global', function () {
-    return gulp.src('./less/global.less')
-        .pipe(watch('./less/global.less', function () {
-            console.log('FILE-CHANGED, START BUILDING: less-global')
-        }))
-        .pipe(less())
-        .pipe(minifyCSS({compatibility: 'ie8'}))
-        .pipe(gulp.dest(path.join(__dirname, 'public/css')))
+    watch('./less/global.less', {}, function () {
+        console.log('[LESS-GLOBAL] Start Building');
+        gulp.src('./less/global.less')
+            .pipe(less())
+            .pipe(postSourceMaps.init())
+            .pipe(postCSS([ autoPrefixer({ browsers: ['last 3 versions'] }) ]))
+            .pipe(postSourceMaps.write('.'))
+            .pipe(minifyCSS({compatibility: 'ie8'}))
+            .pipe(gulp.dest(path.join(__dirname, 'public/css')))
+    })
 })
 
 gulp.task('bundle-js', function () {
-    return gulp.src('./public/js/**/*.js')
-        .pipe(watch('./public/js/**/*.js', function () {
-            console.log('FILE-CHANGED, START BUILDING: bundle-js')
-        }))
-        .pipe(gulp.dest('./public/dist'))
-})
+    watch('./public/js/**/*.js', {}, function () {
+        console.log('[BUNDLE-JS] Start Building');
+        gulp.src(base.concat(['./public/js/**/*.js']))
+            .pipe(concat('bundle.js'))
+            .pipe(gulp.dest(path.join(__dirname, 'public/dist')))
+    })
+});
 
 gulp.task('default', function(){
     gulp.run([
         'less-vendor',
         'less-global',
         'less-own',
-        'bundle-js'])
+        'bundle-js']
+    )
 })

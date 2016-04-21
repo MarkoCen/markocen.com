@@ -23,5 +23,5 @@
     $('.tag-label .tag-name').on('click', function(event){
         var queryString = this.innerHTML;
         window.location.assign(window.location.origin + '/blog?tag=' + queryString);
-    })
+    });
 })(window.$);

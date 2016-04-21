@@ -1,6 +1,16 @@
+@-webkit-keyframes ctag-hover {
+  50% {
+    background-color: #3498DB;
+  }
+}
 @keyframes ctag-hover {
   50% {
     background-color: #3498DB;
+  }
+}
+@-webkit-keyframes tagLabel-hover {
+  50% {
+    background-color: #18BC9C;
   }
 }
 @keyframes tagLabel-hover {
@@ -19,7 +29,8 @@
   cursor: pointer;
 }
 .blogs .tag-label:hover {
-  animation: tagLabel-hover 0.5s infinite;
+  -webkit-animation: tagLabel-hover 0.5s infinite;
+          animation: tagLabel-hover 0.5s infinite;
 }
 .blogs .tag-label:last-child {
   margin-right: 0;
@@ -30,8 +41,6 @@
   background-color: white;
   padding: 1.5rem 1.5rem;
   border-radius: .2rem;
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1) inset;
-  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1) inset;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1) inset;
 }
 .blogs .quote:before,
@@ -39,20 +48,19 @@
   content: "";
   position: absolute;
   z-index: -1;
-  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   top: 50%;
   bottom: 0;
   left: 10px;
   right: 10px;
-  -moz-border-radius: 10px;
   border-radius: 10px;
 }
 .blogs .quote:after {
   right: 10px;
   left: auto;
-  transform: skew(8deg) rotate(3deg);
+  -webkit-transform: skew(8deg) rotate(3deg);
+      -ms-transform: skew(8deg) rotate(3deg);
+          transform: skew(8deg) rotate(3deg);
 }
 .blogs .link {
   color: #075BFF;
@@ -87,8 +95,6 @@
 }
 .blogs .image-block > img {
   border: 1px solid whitesmoke;
-  -webkit-box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
   box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
 }
 .blogs .ctag {
@@ -96,7 +102,8 @@
   cursor: pointer;
 }
 .blogs .ctag:hover {
-  animation: ctag-hover 0.5s infinite;
+  -webkit-animation: ctag-hover 0.5s infinite;
+          animation: ctag-hover 0.5s infinite;
 }
 .blogs .blog-header {
   margin-top: 1rem;
@@ -124,16 +131,12 @@
   padding: .5rem 2rem 1rem 2rem;
   border-radius: 4px;
   border: 1px solid lightgrey;
-  -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
   transition: all .2s;
   margin-bottom: 2rem;
   cursor: pointer;
 }
 .blogs .blog-index .blog-item:hover {
-  -webkit-box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.3);
 }
 .blogs .blog-index .blog-item:hover .read-more {
@@ -223,3 +226,5 @@
 .blogs .blog-content .context #disqus_thread {
   margin-top: 2rem;
 }
+
+/*# sourceMappingURL=blog.css.map */

@@ -1,104 +1,186 @@
 extends ./templates/main.layout.jade
 
-block footerScript
-    script(src="dist/main.js")
-
 block mainBody
     div.top-header-panel
-        div.col-sm-4.col-sm-offset-4.top-btns
-            a.btn.btn-success.about ABOUT ME
-            a.btn.btn-info.blog BLOG / 博客
-        img(class="background-video" src="media/boston.jpg")
-
-    div.container.main-panel
-        div.avatar.col-sm-12#info
-            img(src="./img/avatar.jpeg" class="circle-badge")
-            h2 { name: 'Marko' }
-            div.contacts.col-sm-12
-                a(href="mailto:markocen@gmail.com" class="btn btn-sm" style="background-color:#CB1F1F;")
-                    i.fa.fa-envelope-o.fa-2x
-                a(href="http://www.github.com/MarkoCen" class="btn btn-sm" style="background-color:#323131;")
-                    i.fa.fa-github.fa-2x
-                a(href="https://www.linkedin.com/in/markocen" class="btn btn-sm" style="background-color:#007AB5;")
-                    i.fa.fa-linkedin.fa-2x
-        div.intro.col-sm-10.col-sm-offset-1
-            div.well.well-lg
+        h1.title HELLO!&nbsp;&nbsp;&nbsp;I'M MARKO
+        div.intro.col-sm-12
+            div.col-sm-6.col-sm-offset-3
                 p.
-
-                    Hi there! Welcome to my site, my name is Marko Cen (岑霄宇), I was born in Beijing, China, now live in Boston<br>
+                    Hi there! Welcome to my site, my name is Marko Cen, I was born in Beijing, China, now live in Boston<br><br>
                     I'm a javascript enthusiast, I believe every high quality web application could be built in a pure javascript environment.
-                    Now I heavily use AngularJS and NodeJS in my daily routine, and I have couple of part-time projects built on MEAN.
+                    Now I heavily use AngularJS and NodeJS in my daily routine, and I have couple of side projects built on MEAN
                     You could check my skills at the bottom of this page.<br><br>
-                    Currently, I work as a full-time software engineer at NetBrain Technologies Inc. and I am open to take part-time javascript jobs,
-                    I could work up to 20hrs per week on part-time projects, if you would like to hire me, you could reach me by the contact info listed above
+                    Currently, I work as a full-time developer at NetBrain Technologies Inc, I am open to take part-time projects or help
+                    non-profit organizations with their web applications. You could reach me by the contact info listed below.
+        duv.skills.col-sm-12
+            div.col-sm-6.col-sm-offset-3
+                div.col-sm-12
+                    div.col-sm-2
+                        label JavaScript
+                    div.col-sm-10
+                        div.progress.active
+                            div(class="progress-bar" style="width: 95%;background-color:#F1C40F;")
+                div.col-sm-12
+                    div.col-sm-2
+                        label Node
+                    div.col-sm-10
+                        div.progress.active
+                            div(class="progress-bar" style="width: 80%;background-color:#80BD01;")
+                div.col-sm-12
+                    div.col-sm-2
+                        label C#
+                    div.col-sm-10
+                        div.progress.active
+                            div(class="progress-bar" style="width: 60%;background-color:#0F67A7;")
+                div.col-sm-12
+                    div.col-sm-2
+                        label HTML5
+                    div.col-sm-10
+                        div.progress.active
+                            div(class="progress-bar" style="width: 85%;background-color:#E84C3D;")
+                div.col-sm-12
+                    div.col-sm-2
+                        label CSS3
+                    div.col-sm-10
+                        div.progress.active
+                            div(class="progress-bar" style="width: 85%;background-color:#33A9DC;")
+                div.col-sm-12
+                    div.col-sm-2
+                        label MongoDB
+                    div.col-sm-10
+                        div.progress.active
+                            div(class="progress-bar" style="width: 70%;background-color:#69B241;")
+                div.col-sm-12
+                    div.col-sm-2
+                        label Redis
+                    div.col-sm-10
+                        div.progress.active
+                            div(class="progress-bar" style="width: 40%;background-color:#D82F27;")
+                div.keywords.col-sm-12
+                    div.col-sm-2
+                        label Keywords
+                    div(class="col-sm-10" style="text-align: left;")
+                        span.badge Material Design
+                        span.badge Angular 1.x/2
+                        span.badge Semantic UI
+                        span.badge Underscore
+                        span.badge Socket.io
+                        span.badge Bootstrap
+                        span.badge Mercurial
+                        span.badge ES6/2015
+                        span.badge Express
+                        span.badge MongoDB
+                        span.badge Webpack
+                        span.badge .Net 4+
+                        span.badge jQuery
+                        span.badge Lodash
+                        span.badge Mocha
+                        span.badge React
+                        span.badge Bower
+                        span.badge Node
+                        span.badge Gulp
+                        span.badge NPM
+                        span.badge Git
+                        span.badge 中文
 
+        div.col-sm-12.top-btns
+            a.btn.btn-default.about ABOUT ME
+            a.btn.btn-info.blog BLOG
+            a(href="mailto:markocen@gmail.com" class="btn btn-default") EMAIL
+            a(href="http://www.github.com/MarkoCen" class="btn btn-default") GITHUB
+            a(href="https://www.linkedin.com/in/markocen" class="btn btn-default") LINKEDIN
+            a.btn.btn-default.skill SKILLS
+        canvas(class="background")
 
-
-        div.col-sm-12
-            div.col-sm-2
-                label JavaScript
-            div.col-sm-10
-                div.progress.active
-                    div(class="progress-bar" style="width: 95%;background-color:#F1C40F;")
-        div.col-sm-12
-            div.col-sm-2
-                label Node
-            div.col-sm-10
-                div.progress.active
-                    div(class="progress-bar" style="width: 80%;background-color:#80BD01;")
-        div.col-sm-12
-            div.col-sm-2
-                label C#
-            div.col-sm-10
-                div.progress.active
-                    div(class="progress-bar" style="width: 60%;background-color:#0F67A7;")
-        div.col-sm-12
-            div.col-sm-2
-                label HTML5
-            div.col-sm-10
-                div.progress.active
-                    div(class="progress-bar" style="width: 85%;background-color:#E84C3D;")
-        div.col-sm-12
-            div.col-sm-2
-                label CSS3
-            div.col-sm-10
-                div.progress.active
-                    div(class="progress-bar" style="width: 85%;background-color:#33A9DC;")
-        div.col-sm-12
-            div.col-sm-2
-                label MongoDB
-            div.col-sm-10
-                div.progress.active
-                    div(class="progress-bar" style="width: 70%;background-color:#69B241;")
-        div.col-sm-12
-            div.col-sm-2
-                label Redis
-            div.col-sm-10
-                div.progress.active
-                    div(class="progress-bar" style="width: 40%;background-color:#D82F27;")
-        div.keywords.col-sm-12
-            div.col-sm-2
-                label Keywords
-            div(class="col-sm-10" style="text-align: left;")
-                span.badge Material Design
-                span.badge Angular 1.x/2
-                span.badge Semantic UI
-                span.badge Underscore
-                span.badge Socket.io
-                span.badge Bootstrap
-                span.badge Mercurial
-                span.badge ES6/2015
-                span.badge Express
-                span.badge MongoDB
-                span.badge Webpack
-                span.badge .Net 4+
-                span.badge jQuery
-                span.badge Lodash
-                span.badge Mocha
-                span.badge React
-                span.badge Bower
-                span.badge Node
-                span.badge Gulp
-                span.badge NPM
-                span.badge Git
-                span.badge 中文
+    //div.container.main-panel
+    //    div.avatar.col-sm-12#info
+    //        img(src="./img/avatar.jpeg" class="circle-badge")
+    //        h2 { name: 'Marko' }
+    //        div.contacts.col-sm-12
+    //            a(href="mailto:markocen@gmail.com" class="btn btn-sm" style="background-color:#CB1F1F;")
+    //                i.fa.fa-envelope-o.fa-2x
+    //            a(href="http://www.github.com/MarkoCen" class="btn btn-sm" style="background-color:#323131;")
+    //                i.fa.fa-github.fa-2x
+    //            a(href="https://www.linkedin.com/in/markocen" class="btn btn-sm" style="background-color:#007AB5;")
+    //                i.fa.fa-linkedin.fa-2x
+    //    div.intro.col-sm-10.col-sm-offset-1
+    //        div.well.well-lg
+    //            p.
+    //
+    //                Hi there! Welcome to my site, my name is Marko Cen (岑霄宇), I was born in Beijing, China, now live in Boston<br>
+    //                I'm a javascript enthusiast, I believe every high quality web application could be built in a pure javascript environment.
+    //                Now I heavily use AngularJS and NodeJS in my daily routine, and I have couple of part-time projects built on MEAN.
+    //                You could check my skills at the bottom of this page.<br><br>
+    //                Currently, I work as a full-time software engineer at NetBrain Technologies Inc. and I am open to take part-time javascript jobs,
+    //                I could work up to 20hrs per week on part-time projects, if you would like to hire me, you could reach me by the contact info listed above
+    //
+    //
+    //
+    //    div.col-sm-12
+    //        div.col-sm-2
+    //            label JavaScript
+    //        div.col-sm-10
+    //            div.progress.active
+    //                div(class="progress-bar" style="width: 95%;background-color:#F1C40F;")
+    //    div.col-sm-12
+    //        div.col-sm-2
+    //            label Node
+    //        div.col-sm-10
+    //            div.progress.active
+    //                div(class="progress-bar" style="width: 80%;background-color:#80BD01;")
+    //    div.col-sm-12
+    //        div.col-sm-2
+    //            label C#
+    //        div.col-sm-10
+    //            div.progress.active
+    //                div(class="progress-bar" style="width: 60%;background-color:#0F67A7;")
+    //    div.col-sm-12
+    //        div.col-sm-2
+    //            label HTML5
+    //        div.col-sm-10
+    //            div.progress.active
+    //                div(class="progress-bar" style="width: 85%;background-color:#E84C3D;")
+    //    div.col-sm-12
+    //        div.col-sm-2
+    //            label CSS3
+    //        div.col-sm-10
+    //            div.progress.active
+    //                div(class="progress-bar" style="width: 85%;background-color:#33A9DC;")
+    //    div.col-sm-12
+    //        div.col-sm-2
+    //            label MongoDB
+    //        div.col-sm-10
+    //            div.progress.active
+    //                div(class="progress-bar" style="width: 70%;background-color:#69B241;")
+    //    div.col-sm-12
+    //        div.col-sm-2
+    //            label Redis
+    //        div.col-sm-10
+    //            div.progress.active
+    //                div(class="progress-bar" style="width: 40%;background-color:#D82F27;")
+    //    div.keywords.col-sm-12
+    //        div.col-sm-2
+    //            label Keywords
+    //        div(class="col-sm-10" style="text-align: left;")
+    //            span.badge Material Design
+    //            span.badge Angular 1.x/2
+    //            span.badge Semantic UI
+    //            span.badge Underscore
+    //            span.badge Socket.io
+    //            span.badge Bootstrap
+    //            span.badge Mercurial
+    //            span.badge ES6/2015
+    //            span.badge Express
+    //            span.badge MongoDB
+    //            span.badge Webpack
+    //            span.badge .Net 4+
+    //            span.badge jQuery
+    //            span.badge Lodash
+    //            span.badge Mocha
+    //            span.badge React
+    //            span.badge Bower
+    //            span.badge Node
+    //            span.badge Gulp
+    //            span.badge NPM
+    //            span.badge Git
+    //            span.badge 中文
