@@ -10,7 +10,7 @@
             $('.skills').animate({opacity: 0});
             $('.title').animate({opacity: .5}, 'fast');
         }
-    });
+    })
 
     $('.skill').on('click', function () {
         var skills = $('.skills');
