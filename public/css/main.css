@@ -40,8 +40,7 @@
   z-index: 10;
 }
 .main .top-header-panel .top-btns > a {
-  margin-left: .5rem;
-  margin-right: .5rem;
+  margin: 0 .5rem .6rem .5rem;
 }
 .main .main-panel {
   text-align: center;
