@@ -42,6 +42,15 @@
 .main .top-header-panel .top-btns > a {
   margin: 0 .5rem .6rem .5rem;
 }
+@media screen and (max-width: 600px) {
+  .main .top-header-panel .top-btns {
+    top: 0;
+  }
+  .main .top-header-panel .top-btns > a {
+    margin: 0;
+    border-radius: 0;
+  }
+}
 .main .main-panel {
   text-align: center;
 }
