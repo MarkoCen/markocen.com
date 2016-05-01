@@ -20,12 +20,12 @@ block mainBody
         each article in articles
             div(class="blog-item col-sm-10 col-sm-offset-2", data-article-id=article.articleId)
                 div.read-more
-                    a(href="http://localhost:5555/blog/"+article.articleId) Read More ...
+                    a(href="http://www.markocen.com/blog/"+article.articleId) Read More ...
                 h3.blog-title #{article.title}
                 h6.blog-sub-title #{formatTime(article.date)} by #{article.author}
                 div.tag-area.col-sm-12
                     each tag in article.tags
-                        a(class="ctag label label-default", href="http://localhost:5555/blog?tag=" + tag) #{tag}
+                        a(class="ctag label label-default", href="http://www.markocen.com/blog/?tag=" + tag) #{tag}
                 div.description.col-sm-12
                     p #{article.description}
     div.col-sm-4
