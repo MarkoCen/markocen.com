@@ -48,7 +48,7 @@
 .main .top-header-panel .top-btns > a {
   margin: 0 .5rem .6rem .5rem;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1024px) {
   .main .top-header-panel .top-btns {
     top: 0;
   }
