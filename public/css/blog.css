@@ -142,6 +142,9 @@
 .blogs .blog-index .blog-item:hover .read-more {
   top: 0;
 }
+.blogs .blog-index .blog-item .blog-title {
+  font-weight: bold;
+}
 .blogs .blog-index .blog-item .blog-sub-title {
   color: grey;
   font-style: italic;
