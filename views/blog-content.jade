@@ -1,10 +1,11 @@
 extends ./templates/blog.layout
 
 block mainBody
-    a(class="blog-home-btn", href="/blog", title="Back to catalog")
-        i.fa.fa-sign-out.fa-2x.fa-flip-horizontal
-    a(class="home-btn", href="/", title="Back to Home")
-        i.fa.fa-home.fa-2x
+    div.top-navi
+        a(class="blog-home-btn", href="/blog", title="Back to catalog")
+            i.fa.fa-sign-out.fa-2x.fa-flip-horizontal
+        a(class="home-btn", href="/", title="Back to Home")
+            i.fa.fa-home.fa-2x
     div.blog-content.col-sm-6.col-sm-offset-3
         h1.blog-title #{article.title}
         h6.blog-sub-title #{formatTime(article.date)} by #{article.author}

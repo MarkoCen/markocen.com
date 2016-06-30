@@ -64,11 +64,11 @@
     &:hover{color:#075BFF}
     &:focus{color:#075BFF}
   }
-  .code-inline{
+  code, .code-inline{
     font-family: Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,sans-serif;
     background-color: #eee;
     border-radius: .2rem;
-    padding: .16rem .4rem;
+    padding: 0rem .2rem;
     color: #222426;
   }
   .em{
@@ -177,23 +177,30 @@
       }
     }
   }
-  .home-btn,
-  .blog-home-btn{
+  .top-navi{
     position: fixed;
-    color:#2C3E50;
-    opacity:.4;
-    transition: all .2s;
-    &:hover{
-      opacity: 1;
+    top: -5px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    left: 0;
+    right: 0;
+    background-color: white;
+    z-index: 20;
+
+    .blog-home-btn{
+      margin-left: 10px;
+      margin-right: 15px;
     }
-  }
-  .blog-home-btn{
-    top: .5rem;
-    left: 1rem;
-  }
-  .home-btn{
-    top: .5rem;
-    left: 4rem;
+
+    .home-btn,
+    .blog-home-btn{
+      color:#2C3E50;
+      opacity:.4;
+      transition: all .2s;
+      &:hover{
+        opacity: 1;
+      }
+    }
   }
   .blog-content{
     margin-top: 3rem;
@@ -212,6 +219,7 @@
       div > *{
         &:first-child{
           margin-top: 0rem;
+          max-width:100%;
         }
         margin-top: 1.5rem;
         margin-bottom: 1.5rem;

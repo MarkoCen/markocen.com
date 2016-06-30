@@ -72,11 +72,12 @@
 .blogs .link:focus {
   color: #075BFF;
 }
+.blogs code,
 .blogs .code-inline {
   font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, sans-serif;
   background-color: #eee;
   border-radius: .2rem;
-  padding: .16rem .4rem;
+  padding: 0rem .2rem;
   color: #222426;
 }
 .blogs .em {
@@ -178,24 +179,29 @@
     opacity: 0;
   }
 }
-.blogs .home-btn,
-.blogs .blog-home-btn {
+.blogs .top-navi {
   position: fixed;
+  top: -5px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  left: 0;
+  right: 0;
+  background-color: white;
+  z-index: 20;
+}
+.blogs .top-navi .blog-home-btn {
+  margin-left: 10px;
+  margin-right: 15px;
+}
+.blogs .top-navi .home-btn,
+.blogs .top-navi .blog-home-btn {
   color: #2C3E50;
   opacity: .4;
   transition: all .2s;
 }
-.blogs .home-btn:hover,
-.blogs .blog-home-btn:hover {
+.blogs .top-navi .home-btn:hover,
+.blogs .top-navi .blog-home-btn:hover {
   opacity: 1;
-}
-.blogs .blog-home-btn {
-  top: .5rem;
-  left: 1rem;
-}
-.blogs .home-btn {
-  top: .5rem;
-  left: 4rem;
 }
 .blogs .blog-content {
   margin-top: 3rem;
@@ -219,6 +225,7 @@
 }
 .blogs .blog-content .context div > *:first-child {
   margin-top: 0rem;
+  max-width: 100%;
 }
 .blogs .blog-content .context h3,
 .blogs .blog-content .context h4,
