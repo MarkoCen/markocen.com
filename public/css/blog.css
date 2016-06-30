@@ -35,6 +35,7 @@
 .blogs .tag-label:last-child {
   margin-right: 0;
 }
+.blogs blockquote,
 .blogs .quote {
   border: 1px solid lightgray;
   position: relative;
@@ -43,7 +44,9 @@
   border-radius: .2rem;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1) inset;
 }
+.blogs blockquote:before,
 .blogs .quote:before,
+.blogs blockquote:after,
 .blogs .quote:after {
   content: "";
   position: absolute;
@@ -55,6 +58,7 @@
   right: 10px;
   border-radius: 10px;
 }
+.blogs blockquote:after,
 .blogs .quote:after {
   right: 10px;
   left: auto;
@@ -80,6 +84,7 @@
   padding: 0rem .2rem;
   color: #222426;
 }
+.blogs em,
 .blogs .em {
   font-weight: bold;
 }
