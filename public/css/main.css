@@ -18,6 +18,12 @@
   top: 20%;
   opacity: 0;
 }
+.main .top-header-panel .skills .progress {
+  height: inherit;
+}
+.main .top-header-panel .skills .badge {
+  margin: .2rem .1rem;
+}
 .main .top-header-panel .intro {
   position: absolute;
   top: 20%;
