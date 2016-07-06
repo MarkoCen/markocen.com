@@ -2,7 +2,7 @@ extends ./templates/main.layout.jade
 
 block mainBody
     div.top-header-panel
-        h1.title HELLO!&nbsp;&nbsp;&nbsp;I'M MARKO
+        h1.title HEY!&nbsp;&nbsp;&nbsp;THIS IS MARKO
         div.intro.col-sm-12
             div.col-sm-6.col-sm-offset-3
                 p.
@@ -12,6 +12,18 @@ block mainBody
                     You could check my skills at the bottom of this page.<br><br>
                     Currently, I work as a full-time developer at NetBrain Technologies Inc, I am open to take part-time projects or help
                     non-profit organizations with their web applications. You could reach me by the contact info listed below.
+        div.contacts.col-sm-12
+            div.col-sm-6.col-sm-offset-3
+                div.col-sm-12
+                    h3 EMAIL: markocen[at]gmail.com
+                div.col-sm-12
+                    h3 <a href="https://twitter.com/markocen" target="_blank">TWITTER</a>
+                div.col-sm-12
+                    h3 <a href="http://www.github.com/MarkoCen" target="_blank">GITHUB</a>
+                div.col-sm-12
+                    h3 <a href="https://www.linkedin.com/in/markocen" target="_blank">LINKEDIN</a>
+                div.col-sm-12
+                    h3 <a href="http://stackoverflow.com/users/5454390/markocen" target="_blank">STACKOVERFLOW</a>
         duv.skills.col-sm-12
             div.col-sm-6.col-sm-offset-3
                 div.col-sm-12
@@ -75,8 +87,6 @@ block mainBody
         div.col-sm-12.top-btns
             a.btn.btn-default.about ABOUT ME
             a.btn.btn-info.blog BLOG
-            a(href="mailto:markocen@gmail.com" class="btn btn-default") EMAIL
-            a(href="http://www.github.com/MarkoCen" class="btn btn-default") GITHUB
-            a(href="https://www.linkedin.com/in/markocen" class="btn btn-default") LINKEDIN
+            a.btn.btn-default.contact CONTACTS
             a.btn.btn-default.skill SKILLS
         canvas(class="background")

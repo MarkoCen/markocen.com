@@ -5,10 +5,27 @@
             intro.animate({opacity: .6}, 'fast');
             $('.title').animate({opacity: 0});
             $('.skills').animate({opacity: 0});
+            $('.contacts').animate({opacity: 0});
         }else{
             intro.animate({opacity: 0});
             $('.skills').animate({opacity: 0});
+            $('.contacts').animate({opacity: 0});
             $('.title').animate({opacity: .5}, 'fast');
+        }
+    });
+
+    $('.contact').on('click', function () {
+        var contacts = $('.contacts');
+        if(contacts.css('opacity') == 0){
+            contacts.animate({opacity: .6}, 'fast');
+            $('.title').animate({opacity: 0});
+            $('.skills').animate({opacity: 0});
+            $('.intro').animate({opacity: 0});
+        }else{
+            contacts.animate({opacity: 0});
+            $('.skills').animate({opacity: 0});
+            $('.intro').animate({opacity: 0});
+            $('.title').animate({opacity: .5}, 'fast');;
         }
     })
 
@@ -18,9 +35,11 @@
             skills.animate({opacity: 1}, 'fast');
             $('.intro').animate({opacity: 0});
             $('.title').animate({opacity: 0});
+            $('.contacts').animate({opacity: 0});
         }else{
             skills.animate({opacity: 0});
             $('.intro').animate({opacity: 0});
+            $('.contacts').animate({opacity: 0});
             $('.title').animate({opacity: .5}, 'fast');
         }
     });
