@@ -33,6 +33,7 @@ gulp.task('less-vendor', function () {
 
 gulp.task('less-own', function () {
     watch('./less/own/*.less', {}, function () {
+        console.log('[LESS-OWN] Start Building');
         gulp.src('./less/own/*.less')
             .pipe(less())
             .pipe(postSourceMaps.init())
