@@ -1,8 +1,41 @@
 div
     p.
-        今年七月份在荷兰阿姆斯特丹举行的Google举行了第一次Progressive Web App Summit, 虽然Progressive Web App (PWA)这个词可能还不太被人熟知，
+        今年七月份在荷兰阿姆斯特丹Google首次举行了Progressive Web App Summit, 虽然Progressive Web App (PWA)这个词可能还不太被人熟知，
         但却可以感觉到Google对它抱有很大的期望，也表达出在今后Android设备上大力支持WPA的想法，如果你还不了解PWA，下面是会议的视频录像
 
     div.embed-content
         iframe(width="560" height="315" src="https://www.youtube.com/embed/9Jef9IluQw0" frameborder="0" allowfullscreen).
             Seem like your Browser can't view this embed content...
+
+    p.
+        视频中提到一个很有趣的统计现象: <div class="quote">人们使用手机时, 只有13%的时间在使用浏览器,
+        其它87%的时间都在使用App, 而这87%的时间中, 最常用的三个App又占据了其中80%的时间...</div>
+        对于开发者来说, 这肯定不是一个好现象, 如何引导目标用户安装并且打开一款新上线的App实际是一个
+        非常昂贵的过程, 首先要花力气Marketing让用户对你的App感兴趣, 然后需要提供便捷的下载渠道, 比如通过点击广告直接打开应用商店
+        下载页面。但是即使是如此费事的过程, 为什么用户还是更愿意下载使用App而不是网页应用呢? 大概总结起来有以下几点:
+
+    ul
+        li.
+            <span class='em'>网页应用在离线状态下无法使用</span> <br>比如游戏, 如果想在移动端玩一个网页游戏, 就必须要有网络连接, 否则你只能看到这只小恐龙
+            <div class="image-block"><img src="http://www.omgchrome.com/wp-content/uploads/2015/06/chrome-trex-dinosaur.jpg" /></div>
+        li.
+            <span class='em'>在网络连接不稳定的地区, 网页应用的体验很差</span> <br>比如在2G网络下打开一个网页可能需要几十秒的时间, 而一个本地App可能只需要1秒不到
+            并且本地App有Caching能力, 即使网络很差, App至少可以让用户先看到之前下载的信息, 而不是又一个小恐龙...
+        li.
+            <span class='em'>网页应用需要依附于浏览器</span> <br>所以在手机上需要先打开浏览器然后输入正确的网址, 之后才能看到你的应用, 这多出来的两步就可以阻止80%的手机用户访问你的网站
+
+    p.
+        PWA作为最新的浏览器技术, 就是在试图解决上面提到的种种手机网页应用缺陷, 它的最终目标就是让用户无法区分他正在使用的是一个网页App还是一个原生App
+        从视频中可以看到PWA现在已经可以做到了以下几点:
+
+    ul
+        li 快速安装应用, 网络环境不是太差环境下, 几乎都是瞬间完成安装
+        li 极小的硬盘占用空间
+        li 可以添加桌面icon, 并可以通过icon打开网页应用
+        li 提供类似于原生App的Splash Screen
+        li 具有离线使用能力
+        li 可以调用部分手机功能, 比如联系人, 相册等
+
+    p.
+        PWA给网页应用开发者打开了一扇大门, 但从目前的进度来看, PWA还只局限于开发资讯类的应用, 对于电商, 社交以及游戏类应用,
+        PWA还难以应付, 如何进行数据推送, 如何进行收集支付, 以及与之相关的安全问题, 这些PWA还都没有涉及到。
