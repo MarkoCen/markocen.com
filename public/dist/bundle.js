@@ -84,7 +84,7 @@ d.parent(".dropdown-menu").length&&(d=d.closest("li.dropdown").addClass("active"
     });
 
     $('.blog').on('click', function(){
-        window.location.assign(window.location.href + "blog")
+        window.location.href = 'https://medium.com/@markocen'
     });
 
     if (!window.requestAnimationFrame) {
