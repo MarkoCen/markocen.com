@@ -89,7 +89,50 @@ block mainBody
             a.btn.btn-info.blog BLOG
             a.btn.btn-default.contact CONTACTS
             a.btn.btn-default.skill SKILLS
-            
-        iframe(width="0" height="0" src="https://www.youtube.com/embed/UprcpdwuwCg?autoplay=1&loop=1&controls=0&disablekb=1&start=17" frameborder="0")
-        a(href="https://youtu.be/UprcpdwuwCg" class="btn btn-link" target="_blank" style="position: fixed;bottom:5px;right:15px;") Music: Heathens
-        canvas(class="background")
+
+        style.
+            .bg-music-wrap {
+                position: fixed;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                overflow: hidden;
+                background-color: black;
+                z-index: -100;
+            }
+
+            .bg-music {
+                opacity: .3;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: auto;
+                height: auto;
+                min-width: 100%;
+                min-height: 100%;
+                -webkit-transform: translate(-50%, -50%);
+                -moz-transform: translate(-50%, -50%);
+                -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+            }
+
+            @media (max-width: 767px) {
+                .bg-music-wrap {
+                    background: white;
+                }
+
+                .bg-music {
+                    display: none;
+                }
+            }
+        div.bg-music-wrap
+            video.bg-music(autoplay loop)
+                source(src="/media/bg-music.mp4" type="video/mp4")
+            script.
+                var video = document.querySelector('.bg-music');
+                video.playbackRate = .85;
+                video.volume = .6;
+
+        a(href="https://youtu.be/M2hW6jgomwo" class="btn btn-link" target="_blank" style="position: fixed;bottom:5px;right:15px;") Music: Heathens Remix
+        //canvas(class="background")
