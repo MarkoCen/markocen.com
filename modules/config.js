@@ -18,7 +18,7 @@ module.exports = function () {
     var thisWorldRouter = require('../routes/thisWorldRouter');
     app.use('/blog', blogRouter);
 
-    app.options('/tw', cors())    
+    app.options('/tw/*', cors())    
     app.use('/tw', cors(), thisWorldRouter);
 
     app.get('/', function (req, res) {
