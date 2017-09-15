@@ -1,6 +1,9 @@
 #webstorm idea folder
 .idea
 
+#VS code
+.vscode
+
 # Logs
 logs
 *.log

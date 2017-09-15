@@ -14,7 +14,9 @@ module.exports = function () {
     app.set('views', './views');
 
     var blogRouter = require('../routes/blogRouter');
+    var thisWorldRouter = require('../routes/thisWorldRouter');
     app.use('/blog', blogRouter);
+    app.use('/tw', thisWorldRouter);
 
     app.get('/', function (req, res) {
         res.render('main');
