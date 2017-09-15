@@ -4,10 +4,11 @@ const cheerio = require('cheerio');
 
 ThisWorldRouter.get('/url', ({query},res)=>{
     let url = query.url;
+    if(!url) return res.status(404).json(false);
     if(url.lastIndexOf('http', 0) !== 0) {
         url = 'http://' + url;
     }
-    request.get('https://gist.github.com/aharshac/4526be3ded1a096819017ab3fca57439', (err, {body})=>{
+    request.get(url, (err, {body})=>{
         if(err) {
             return res.status(500).json(false);
         }
