@@ -4,6 +4,7 @@ module.exports = function () {
     var constants = require('./constants');
     var path = require('path');
     var compression = require('compression');
+    var cors = require('cors');
     var app = express();
 
     app.use(compression());
@@ -16,7 +17,7 @@ module.exports = function () {
     var blogRouter = require('../routes/blogRouter');
     var thisWorldRouter = require('../routes/thisWorldRouter');
     app.use('/blog', blogRouter);
-    app.use('/tw', thisWorldRouter);
+    app.use('/tw', cors(), thisWorldRouter);
 
     app.get('/', function (req, res) {
         res.render('main');
