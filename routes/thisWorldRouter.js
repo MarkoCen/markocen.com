@@ -32,8 +32,7 @@ ThisWorldRouter.get('/url', ({query},res)=>{
     if(videoInfo && videoInfo.mediaType === 'video') {
         return res.json({
             mediaType: 'video',
-            provider: videoInfo.provider,
-            videoId: videoInfo.id
+            embedUrl: buildEmbedUrl(videoInfo)
         })
     }
 
@@ -60,5 +59,20 @@ ThisWorldRouter.get('/url', ({query},res)=>{
         })
     })
 });
+
+function buildEmbedUrl(videoInfo) {
+    const provider = videoInfo.provider;
+    switch(provider) {
+        case 'youtube': {
+            return `https://youtube.com/embed/${videoInfo.id}`;
+        }
+        case 'vimeo': {
+            return `https://player.vimeo.com/video/${videoInfo.id}`;
+        }
+        case 'youku': {
+            return `https://player.youku.com/embed/${videoInfo.id}`;
+        }
+    }
+}
 
 module.exports = ThisWorldRouter;
