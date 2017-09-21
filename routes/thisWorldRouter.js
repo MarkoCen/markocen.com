@@ -1,13 +1,43 @@
 const ThisWorldRouter = require('express').Router();
 const request = require('request');
 const cheerio = require('cheerio');
+const isImageUrl = require('is-image-url');
+const isBase64 = require('is-base64');
+const videoUrlParser = require('js-video-url-parser');
 
 ThisWorldRouter.get('/url', ({query},res)=>{
     let url = query.url;
+    const urlRegex = /^https?:\/\//;
     if(!url) return res.status(404).json(false);
-    if(url.lastIndexOf('http', 0) !== 0) {
+    if(!urlRegex.test(url)) {
         url = 'http://' + url;
     }
+
+    // if url is an image resource
+    if(isImageUrl(url)) {
+        return res.json({
+            mediaType: 'image'
+        })
+    }
+
+    // if url is base64 image
+    if(isBase64(url)) {
+        return res.json({
+            mediaType: 'image'
+        })
+    }
+
+    // if url is a video link
+    const videoInfo = videoUrlParser.parse(url);
+    if(videoInfo && videoInfo.mediaType === 'video') {
+        return res.json({
+            mediaType: 'video',
+            provider: videoInfo.provider,
+            videoId: videoInfo.id
+        })
+    }
+
+    // otherwise, parse the url response
     request.get(url, (err, {body})=>{
         if(err) {
             return res.status(500).json(false);
@@ -25,7 +55,8 @@ ThisWorldRouter.get('/url', ({query},res)=>{
         res.json({
             title: ogTitle,
             description: ogDescription,
-            image: ogImage
+            image: ogImage,
+            mediaType: 'html'
         })
     })
 });
