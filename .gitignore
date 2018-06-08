@@ -4,6 +4,8 @@
 #VS code
 .vscode
 
+build/
+
 # Logs
 logs
 *.log
