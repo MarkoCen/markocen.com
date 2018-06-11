@@ -1,28 +1,15 @@
-import { Logger, LoggerInstance, transports } from 'winston';
-
-interface IConsoleLoggerOptions {
-    level: string;
-    handleExceptions: boolean;
-    json: boolean;
-    colorize: boolean;
-}
-
-interface IFileLoggerOptions extends IConsoleLoggerOptions {
-    filename: string;
-    maxsize: number;
-    maxFiles: number;
-}
+import { ConsoleTransportOptions, FileTransportOptions, Logger, LoggerInstance, transports } from 'winston';
 
 const isPro: boolean = process.env.NODE_ENV === 'production';
 
-const consoleOptions: IConsoleLoggerOptions = {
+const consoleOptions: ConsoleTransportOptions = {
     colorize: true,
     handleExceptions: true,
     json: false,
     level: 'debug',
 };
 
-const fileOptions: IFileLoggerOptions = {
+const fileOptions: FileTransportOptions = {
     colorize: false,
     filename: `${process.cwd()}/logs/app.log`,
     handleExceptions: true,
