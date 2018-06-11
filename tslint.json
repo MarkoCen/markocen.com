@@ -7,11 +7,13 @@
     "rules": {
         "max-line-length": {
             "options": [120]
-        }
+        },
+        "quotemark": [true, "single", "jsx-double"]
     },
     "jsRules": {
         "max-line-length": {
             "options": [120]
-        }
+        },
+        "quotemark": [true, "single", "jsx-double"]
     }
 }
