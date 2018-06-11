@@ -4,9 +4,10 @@
         "moduleResolution": "node",
         "outDir": "./build",
         "allowJs": true,
+        "noImplicitAny": true,
         "experimentalDecorators": true,
         "strict": true,
-        "target": "es2016"
+        "target": "es6"
     },
     "include": [
         "src/**/*"
