@@ -9,29 +9,37 @@
   "scripts": {
     "clean": "rm -rf build/",
     "build:server": "tsc -p server/tsconfig.json",
-    "build:client": "tsc -p client/tsconfig.json",
+    "build:client": "webpack --config config/webpack.dev.js",
     "build": "yarn clean && yarn build:server && yarn build:client",
-    "dev": "nodemon --config config/nodemon.json"
+    "dev:server": "nodemon --config config/nodemon.json",
+    "dev:client": "webpack-dev-server --config config/webpack.dev.js --open"
   },
   "devDependencies": {
     "@types/dotenv": "^4.0.3",
     "@types/express": "^4.16.0",
     "@types/morgan": "^1.7.35",
+    "@types/prop-types": "^15.5.3",
     "@types/react": "^16.3.17",
     "@types/react-dom": "^16.0.6",
     "@types/winston": "^2.3.9",
+    "html-webpack-plugin": "^3.2.0",
     "nodemon": "^1.17.5",
+    "ts-loader": "^4.4.1",
     "ts-node": "^6.1.0",
     "tslint": "^5.10.0",
     "tslint-eslint-rules": "^5.3.1",
     "tslint-react": "^3.6.0",
-    "typescript": "^2.9.1"
+    "typescript": "^2.9.1",
+    "webpack": "^4.12.0",
+    "webpack-cli": "^3.0.3",
+    "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
     "cross-env": "^5.1.6",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "morgan": "^1.9.0",
+    "prop-types": "^15.6.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "winston": "^2.4.2"
