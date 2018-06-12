@@ -1,0 +1,13 @@
+{
+    "extends": "./tsconfig.base",
+    "compilerOptions": {
+        "outDir": "build/client/",
+        "module": "commonjs",
+        "target": "es5",
+        "jsx": "react",
+        "allowSyntheticDefaultImports": true
+    },
+    "include": [
+        "client/**/*"
+    ]
+}
