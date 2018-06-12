@@ -1,11 +1,20 @@
 {
-    "extends": "../config/tsconfig.base",
     "compilerOptions": {
+        "baseUrl": "../",
+        "allowJs": true,
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "experimentalDecorators": true,
+        "strict": true,
         "outDir": "../build/server",
         "module": "commonjs",
         "target": "es6"
     },
     "include": [
-        "../server/**/*"
+        "**/*"
+    ],
+    "exclude": [
+        "../node_modules",
+        "**/*.spec.ts"
     ]
 }

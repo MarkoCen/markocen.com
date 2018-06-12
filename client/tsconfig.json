@@ -1,13 +1,22 @@
 {
-    "extends": "../config/tsconfig.base",
     "compilerOptions": {
+        "baseUrl": "../",
+        "allowJs": true,
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "experimentalDecorators": true,
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
         "outDir": "../build/client/",
         "module": "commonjs",
         "target": "es5",
         "jsx": "react",
-        "allowSyntheticDefaultImports": true
     },
     "include": [
-        "../client/**/*"
+        "**/*"
+    ],
+    "exclude": [
+        "../node_modules",
+        "**/*.spec.ts"
     ]
 }
