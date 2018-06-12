@@ -1,9 +1,6 @@
 #webstorm idea folder
 .idea
 
-#VS code
-.vscode
-
 build/
 
 # Logs

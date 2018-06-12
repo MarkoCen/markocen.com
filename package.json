@@ -7,9 +7,11 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
-    "build:server": "tsc -p tsconfig.server.json",
-    "build:client": "tsc -p tsconfig.client.json",
-    "dev": "nodemon"
+    "clean": "rm -rf build/",
+    "build:server": "tsc -p server/tsconfig.json",
+    "build:client": "tsc -p client/tsconfig.json",
+    "build": "yarn clean && yarn build:server && yarn build:client",
+    "dev": "nodemon --config config/nodemon.json"
   },
   "devDependencies": {
     "@types/dotenv": "^4.0.3",
