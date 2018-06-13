@@ -4,8 +4,10 @@ import autobind from 'autobind-decorator';
 import PropTypes from 'prop-types';
 import React, { Component, ReactElement, RefObject } from 'react';
 import styled from 'styled-components';
-import BirdGeometry from './BirdGeometry';
-import GPUComputationRenderer from './GPUComputationRenderer';
+import BirdGeometry from '../BirdGeometry';
+import GPUComputationRenderer from '../GPUComputationRenderer';
+
+const styles = require('./styles.scss');
 
 const Container = styled.div`
     position: absolute;
@@ -13,11 +15,6 @@ const Container = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-`;
-
-const Stage = styled.div`
-    widht: 100%;
-    height: 100%;
 `;
 
 @autobind
@@ -45,7 +42,7 @@ class BirdBackground extends Component {
 
     constructor(props: any, context: any) {
         super(props, context);
-        this.WIDTH = 32;
+        this.WIDTH = 16;
         this.BIRDS = this.WIDTH * this.WIDTH;
         this.stageRef = React.createRef();
     }
@@ -59,8 +56,10 @@ class BirdBackground extends Component {
 
     public initComputeRenderer() {
         this.gpuCompute = new GPUComputationRenderer(this.WIDTH, this.WIDTH, this.renderer);
+
         const dtPosition = this.gpuCompute.createTexture();
         const dtVelocity = this.gpuCompute.createTexture();
+
         this.fillPositionTexture(dtPosition);
         this.fillVelocityTexture(dtVelocity);
 
@@ -74,6 +73,7 @@ class BirdBackground extends Component {
             document.getElementById('fragmentShaderPosition')!.textContent,
             dtPosition,
         );
+
         this.gpuCompute.setVariableDependencies(
             this.velocityVariable,
             [this.positionVariable, this.velocityVariable],
@@ -82,6 +82,7 @@ class BirdBackground extends Component {
             this.positionVariable,
             [this.positionVariable, this.velocityVariable],
         );
+
         this.positionUniforms = this.positionVariable.material.uniforms;
         this.velocityUniforms = this.velocityVariable.material.uniforms;
         this.positionUniforms.time = { value: 0.0 };
@@ -99,29 +100,37 @@ class BirdBackground extends Component {
         this.velocityVariable.wrapT = THREE.RepeatWrapping;
         this.positionVariable.wrapS = THREE.RepeatWrapping;
         this.positionVariable.wrapT = THREE.RepeatWrapping;
+
+        this.gpuCompute.init();
     }
 
     public init() {
         this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 3000);
         this.camera.position.z = 350;
+
         this.scene = new THREE.Scene();
         this.scene.background = new THREE.Color(0xffffff);
         this.scene.fog = new THREE.Fog(0xffffff, 100, 1000);
+
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.setPixelRatio(window.devicePixelRatio);
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.stageRef.current!.appendChild(this.renderer.domElement);
+
         this.initComputeRenderer();
-        document.addEventListener('mousemove', this.onDocumentMouseMove, false);
-        document.addEventListener('touchstart', this.onDocumentTouchStart, false);
-        document.addEventListener('touchmove', this.onDocumentTouchMove, false);
-        window.addEventListener('resize', this.onWindowResize, false);
+
+        document.addEventListener('mousemove', this.onDocumentMouseMove);
+        document.addEventListener('touchstart', this.onDocumentTouchStart);
+        document.addEventListener('touchmove', this.onDocumentTouchMove);
+        window.addEventListener('resize', this.onWindowResize);
+
         const effectController = {
             alignment: 20.0,
             cohesion: 20.0,
             freedom: 0.75,
             seperation: 20.0,
         };
+
         const valuesChanger = () => {
             this.velocityUniforms.seperationDistance.value = effectController.seperation;
             this.velocityUniforms.alignmentDistance.value = effectController.alignment;
@@ -129,6 +138,7 @@ class BirdBackground extends Component {
             this.velocityUniforms.freedomFactor.value = effectController.freedom;
         };
         valuesChanger();
+
         this.initBirds();
     }
 
@@ -136,7 +146,7 @@ class BirdBackground extends Component {
         const geometry = new BirdGeometry(this.BIRDS, this.WIDTH);
         // For Vertex and Fragment
         this.birdUniforms = {
-            color: { value: new THREE.Color(0xff2200) },
+            color: { value: new THREE.Color('0xff2200') },
             delta: { value: 0.0 },
             texturePosition: { value: null },
             textureVelocity: { value: null },
@@ -243,7 +253,7 @@ class BirdBackground extends Component {
     public render() {
         return (
             <Container>
-                <div ref={this.stageRef} />
+                <div className={styles.canvasWrap} ref={this.stageRef} />
                 <script
                     id="fragmentShaderPosition"
                     type="x-shader/x-fragment"

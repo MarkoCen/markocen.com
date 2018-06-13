@@ -1,10 +1,11 @@
 declare const THREE: any;
 
+let w = 0;
+
 class BirdGeometry extends (THREE.BufferGeometry as { new(): any; }) {
     public static vertsPush(verticeArray: number[], dots: number[]) {
-        let v = 0;
-        for (let i = 0; i < dots.length; i++) {
-            verticeArray[v++] = arguments[i];
+        for (const i of dots) {
+            verticeArray[w++] = i;
         }
     }
 
@@ -56,8 +57,7 @@ class BirdGeometry extends (THREE.BufferGeometry as { new(): any; }) {
                 const x = (i % WIDTH) / WIDTH;
                 const y = ~~(i / WIDTH) / WIDTH;
                 const c = new THREE.Color(
-                    0x444444 +
-                    ~~(v / 9) / BIRDS * 0x666666,
+                    'skyblue',
                 );
                 birdColors.array[ v * 3 + 0 ] = c.r;
                 birdColors.array[ v * 3 + 1 ] = c.g;

@@ -5,11 +5,11 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 import Routes from '../modules/routes';
 
-import BirdBackground from '../components/BirdBackground';
+import BirdBackground from '../components/BirdBackground/BirdBackground';
 import Main from './Main';
 
 const AppContainer = styled.div`
-    background: whitesmoke;
+    background: white;
     width: 100%;
     min-height: 100vh;
 `;

@@ -10,7 +10,8 @@
         },
         "quotemark": [true, "single", "jsx-double"],
         "jsx-no-multiline-js": false,
-        "no-bitwise": false
+        "no-bitwise": false,
+        "no-var-requires": false
     },
     "jsRules": {
         "max-line-length": {
