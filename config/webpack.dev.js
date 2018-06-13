@@ -2,13 +2,16 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const paths = require('./paths');
 const devServer = require('./devServer');
+const loaders = require('./loaders');
 
 const publicPath = '/';
 const publicUrl = '';
 const filename = 'static/js/bundle.js';
 const chunkFilename = 'static/js/[name].chunk.js';
+const extensions = ['.tsx', '.ts', '.jsx', '.js', '.json'];
 
 module.exports = {
+    devServer,    
     mode: 'development',
     devtool: 'cheap-module-source-map',
     entry: [
@@ -23,20 +26,17 @@ module.exports = {
         publicPath,
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.jsx', '.js', '.json']
+        extensions
     },
     module: {
         rules: [{
             oneOf: [
-                {
-                    test: /.tsx?$/,
-                    loader: 'ts-loader',
-                    options: {
-                        configFile: paths.tsConfig,
-                        colors: true,
-                    },
-                    exclude: /node_modules/,
-                },
+                // order matters
+                loaders.urlLoader,
+                loaders.tsLoader,
+                loaders.sassLoader,
+                loaders.cssLoader,
+                loaders.fileLoader,
             ]
         }]
     },
@@ -57,5 +57,4 @@ module.exports = {
     performance: {
         hints: false,
     },
-    devServer
 }

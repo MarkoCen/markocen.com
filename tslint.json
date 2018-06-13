@@ -8,7 +8,9 @@
         "max-line-length": {
             "options": [120]
         },
-        "quotemark": [true, "single", "jsx-double"]
+        "quotemark": [true, "single", "jsx-double"],
+        "jsx-no-multiline-js": false,
+        "no-bitwise": false
     },
     "jsRules": {
         "max-line-length": {
