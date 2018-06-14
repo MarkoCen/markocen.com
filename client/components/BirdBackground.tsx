@@ -3,18 +3,36 @@ declare const THREE: any;
 import autobind from 'autobind-decorator';
 import PropTypes from 'prop-types';
 import React, { Component, ReactElement, RefObject } from 'react';
-import styled from 'styled-components';
-import BirdGeometry from '../BirdGeometry';
-import GPUComputationRenderer from '../GPUComputationRenderer';
-
-const styles = require('./styles.scss');
+import styled, { keyframes } from 'styled-components';
+import BirdGeometry from './BirdGeometry';
+import GPUComputationRenderer from './GPUComputationRenderer';
 
 const Container = styled.div`
     position: absolute;
+    z-index: -1;
+    background: radial-gradient(
+        closest-corner, white, white, white, white, white, white, rgba(211, 211, 211, 0.3)
+    );
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+`;
+
+const fadeIn = keyframes`
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: .6;
+    }
+`;
+
+const CanvasWrap = styled.div`
+    width: 100%;
+    height: 100%;
+    animation: ${fadeIn} 8s ease-in;
+    animation-fill-mode: forwards;
 `;
 
 @autobind
@@ -253,7 +271,7 @@ class BirdBackground extends Component {
     public render() {
         return (
             <Container>
-                <div className={styles.canvasWrap} ref={this.stageRef} />
+                <CanvasWrap innerRef={this.stageRef} />
                 <script
                     id="fragmentShaderPosition"
                     type="x-shader/x-fragment"

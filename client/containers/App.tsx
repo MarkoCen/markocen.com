@@ -1,17 +1,20 @@
 import 'normalize.css';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import React, { Component, Props } from 'react';
+import { BrowserRouter, Link, Route, RouteComponentProps, Switch } from 'react-router-dom';
+import { TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
 import Routes from '../modules/routes';
+import { flexLayout } from '../theme/mixin';
 
-import BirdBackground from '../components/BirdBackground/BirdBackground';
-import Main from './Main';
+import BirdBackground from '../components/BirdBackground';
+import AboutPage from './About';
+import MainPage from './Main';
 
 const AppContainer = styled.div`
-    background: white;
     width: 100%;
     min-height: 100vh;
+    ${flexLayout()}
 `;
 
 class App extends Component {
@@ -24,10 +27,20 @@ class App extends Component {
             <AppContainer>
                 <BirdBackground />
                 <BrowserRouter>
-                    <Switch>
-                        <Route exact={true} path={Routes.Home.path} component={Main} />
-                        <Route component={Main} />
-                    </Switch>
+                    <div>
+                        <Link to="/">Main</Link>
+                        <Link to="/about">About</Link>
+                        <Switch>
+
+                                <Route
+                                    path={Routes.About.path}
+                                    children={(props: RouteComponentProps<any>) => (
+                                        <AboutPage {...props} />
+                                    )}
+                                />
+                                <Route component={MainPage} />
+                            </Switch>
+                    </div>
                 </BrowserRouter>
             </AppContainer>
         );

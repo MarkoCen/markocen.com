@@ -22,6 +22,7 @@
     "@types/react": "^16.3.17",
     "@types/react-dom": "^16.0.6",
     "@types/react-router-dom": "^4.2.7",
+    "@types/react-transition-group": "^2.0.11",
     "@types/three": "^0.92.4",
     "@types/winston": "^2.3.9",
     "autoprefixer": "^8.6.2",
@@ -46,6 +47,7 @@
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
+    "animated": "^0.2.2",
     "autobind-decorator": "^2.1.0",
     "cross-env": "^5.1.6",
     "dotenv": "^6.0.0",
@@ -56,6 +58,7 @@
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-router-dom": "^4.3.1",
+    "react-transition-group": "^2.3.1",
     "styled-components": "^3.3.2",
     "winston": "^2.4.2"
   }

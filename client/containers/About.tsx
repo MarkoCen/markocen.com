@@ -1,13 +1,14 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import AnimatedWraperFn from '../components/AnimatedWraper';
 
-class MainPage extends Component<any> {
+class AboutPage extends Component<any> {
     public render() {
         return (
-            <div style={this.props.style}>Hello World Main</div>
+            <div style={this.props.style}>This is about page</div>
         );
     }
 }
 
-export default AnimatedWraperFn(MainPage);
+export default AnimatedWraperFn(AboutPage);

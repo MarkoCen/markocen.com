@@ -1,4 +1,5 @@
 const Routes = {
+    About: { path: '/about' },
     Home: { path: '/' },
 };
 
