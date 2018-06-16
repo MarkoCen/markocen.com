@@ -11,7 +11,7 @@ const Container = styled.div`
     position: absolute;
     z-index: -1;
     background: radial-gradient(
-        closest-corner, white, white, white, white, white, white, rgba(211, 211, 211, 0.3)
+        closest-corner, white, white, white, white, white, white, rgba(211, 211, 211, 0.6)
     );
     top: 0;
     left: 0;
