@@ -47,7 +47,6 @@
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
-    "animated": "^0.2.2",
     "autobind-decorator": "^2.1.0",
     "cross-env": "^5.1.6",
     "dotenv": "^6.0.0",
