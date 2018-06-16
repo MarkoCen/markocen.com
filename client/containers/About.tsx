@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import AnimatedWraperFn from '../components/AnimatedWraper';
 
 class AboutPage extends Component<any> {
     public render() {
@@ -11,4 +10,4 @@ class AboutPage extends Component<any> {
     }
 }
 
-export default AnimatedWraperFn(AboutPage);
+export default AboutPage;

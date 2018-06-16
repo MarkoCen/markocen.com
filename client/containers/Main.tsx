@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import AnimatedWraperFn from '../components/AnimatedWraper';
 
 class MainPage extends Component<any> {
     public render() {
@@ -10,4 +9,4 @@ class MainPage extends Component<any> {
     }
 }
 
-export default AnimatedWraperFn(MainPage);
+export default MainPage;
