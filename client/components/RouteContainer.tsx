@@ -7,6 +7,7 @@ import { duration, transitionName } from '../modules/transitions';
 
 import MainPage from '../containers//Main';
 import AboutPage from '../containers/About';
+import NoMatch from '../containers/NoMatch';
 
 class RouteContainer extends Component<RouteComponentProps<any>, any> {
     public render() {
@@ -21,6 +22,7 @@ class RouteContainer extends Component<RouteComponentProps<any>, any> {
                         <Switch location={location}>
                             <Route path={Routes.About.path} component={AboutPage} />
                             <Route exact={true} path={Routes.Home.path} component={MainPage} />
+                            <Route component={NoMatch} />
                         </Switch>
                     </CSSTransition>
                 </TransitionGroup>
