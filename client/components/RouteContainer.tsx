@@ -15,8 +15,6 @@ class RouteContainer extends Component<RouteComponentProps<any>, any> {
 
         return (
             <div>
-                <Link to="/">Main</Link>
-                <Link to="/about">About</Link>
                 <TransitionGroup>
                     <CSSTransition key={location.key} classNames={transitionName} timeout={duration}>
                         <Switch location={location}>
