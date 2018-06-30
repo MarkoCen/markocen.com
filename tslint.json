@@ -13,7 +13,8 @@
         "jsx-no-lambda": false,
         "object-literal-sort-keys": false,
         "no-bitwise": false,
-        "no-var-requires": false
+        "no-var-requires": false,
+        "no-implicit-dependencies": [true, "dev"]
     },
     "jsRules": {
         "max-line-length": {
