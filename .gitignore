@@ -2,7 +2,7 @@
 .idea
 .cache
 
-build/
+public/
 
 # Logs
 logs
