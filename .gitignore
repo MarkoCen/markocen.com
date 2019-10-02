@@ -1,5 +1,6 @@
 #webstorm idea folder
 .idea
+.cache
 
 build/
 
