@@ -1,21 +1,15 @@
 module.exports = {
     plugins: [
+        { resolve: 'gatsby-plugin-sass' },
         {
             resolve: 'gatsby-plugin-typescript',
             options: {},
         },
         {
-            resolve: 'gatsby-plugin-typography',
-            options: {
-                pathToConfigModule: 'src/utils/typography.ts',
-                omitGoogleFont: true,
-            },
-        },
-        {
             resolve: 'gatsby-plugin-web-font-loader',
             options: {
                 google: {
-                    families: ['Rubik', 'sans-serif'],
+                    families: ['Rubik'],
                 },
             },
         },
