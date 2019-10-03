@@ -30,5 +30,14 @@ module.exports = {
                 name: 'src',
             },
         },
+        {
+            resolve: 'gatsby-plugin-react-helmet',
+        },
+        {
+            resolve: 'gatsby-plugin-emoji-favicon',
+            options: {
+                emoji: '🦄',
+            },
+        },
     ],
 };
