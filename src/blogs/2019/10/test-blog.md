@@ -5,3 +5,7 @@ title: 'THIS IS A TEST TITLE'
 ---
 
 Oooooh-weeee, my first blog post! [Google](https://google.com)
+
+```typescript
+const a = 1;
+```
