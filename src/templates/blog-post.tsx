@@ -1,5 +1,6 @@
 import { graphql } from 'gatsby';
 import React, { FunctionComponent } from 'react';
+import PageLayout from '../components/common/PageLayout';
 
 interface IProps {
     data: {
@@ -13,12 +14,12 @@ interface IProps {
 const BlogPostTemplate: FunctionComponent<IProps> = ({ data }) => {
     const { markdownRemark } = data;
     return (
-        <div className='blog-post-container'>
+        <PageLayout>
             <div className='blog-post'>
                 <h1>{markdownRemark.frontmatter.title}</h1>
                 <div className='blog-post-content' dangerouslySetInnerHTML={{ __html: markdownRemark.html }} />
             </div>
-        </div>
+        </PageLayout>
     );
 };
 

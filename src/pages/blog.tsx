@@ -22,11 +22,11 @@ const BlogPage: FunctionComponent<IProps> = ({ data }) => {
         <div>
             {data.allMarkdownRemark.edges.map(({ node }) => (
                 <div key={node.id}>
-                    <Link to={node.fields.slug}>
-                        <h3>
-                            {node.frontmatter.title} <span>— {node.frontmatter.date}</span>
-                        </h3>
-                    </Link>
+                    <h3>
+                        <Link to={node.fields.slug}>
+                            {node.frontmatter.title} — {node.frontmatter.date}
+                        </Link>
+                    </h3>
                 </div>
             ))}
         </div>

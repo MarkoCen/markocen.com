@@ -7,6 +7,13 @@ $link-color: #000;
 $link-hover-color: #000;
 $link-hover-decoration: none;
 
+$enable-responsive-font-sizes: true;
+$font-size-base: 1.6rem;
+$line-height-base: 1.4;
+$font-weight-light: 100;
+$font-weight-normal: 300;
+$font-weight-bold: 500;
+
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
@@ -16,8 +23,25 @@ $link-hover-decoration: none;
 
 @import '~bootstrap/scss/grid';
 
+// html.wf-active * {
+//     opacity: 1;
+//     transition: opacity 100ms ease-in-out;
+// }
+
+html.wf-loading * {
+    opacity: 0 !important;
+    // transition: opacity 100ms ease-in-out;
+}
+
+body {
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
 a {
     position: relative;
+    margin-left: 0.25em;
+    margin-right: 0.25em;
     &::after {
         content: '';
         position: absolute;
@@ -27,7 +51,7 @@ a {
         right: -0.1em;
         bottom: 0;
         transition: top 200ms cubic-bezier(0, 0.8, 0.13, 1);
-        background-color: rgba(0, 116, 217, 0.4);
+        background-color: rgba(0, 126, 229, 0.4);
     }
 
     &:hover::after {
