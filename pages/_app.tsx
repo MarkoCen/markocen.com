@@ -3,9 +3,18 @@ import React from 'react';
 import { AppProps } from 'next/app';
 
 import '../styles/global.css';
+import { DefaultSeo } from 'next-seo';
 
 const MyBlog = ({ Component, pageProps }: AppProps) => {
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <DefaultSeo
+        title='Marko Cen'
+        description='Hi This is Marko, I am a full-stack software engineer with over 8 years experiences and this is my personal website.'
+      />
+      <Component {...pageProps} />
+    </>
+  );
 };
 
 // Only uncomment this method if you have blocking data requirements for
