@@ -1,3 +1,4 @@
+import slug from 'slug';
 import { BlogPost, BlogPostDetail } from '../../models/blog-post';
 import { graphqlClient } from './client';
 
@@ -40,6 +41,7 @@ export const getBlogPosts = async (
     cursor: repository.issues.edges[repository.issues.edges.length - 1].cursor,
     posts: repository.issues.edges.map(edge => ({
       ...edge.node,
+      slug: `${slug(edge.node.title)}__${edge.node.number}`,
     })),
   };
 };
