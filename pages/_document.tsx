@@ -10,10 +10,12 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head>
+        <Head title='Marko Cen'>
           <link rel='preconnect' href='https://fonts.googleapis.com' />
           <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='true' />
           <link href='https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap' rel='stylesheet' />
+          <link rel='shortcut icon' href='/favicon.ico' type='image/x-icon' />
+          <link rel='icon' href='/favicon.ico' type='image/x-icon' />
         </Head>
         <body className='font-sans text-gray-700'>
           <Main />
