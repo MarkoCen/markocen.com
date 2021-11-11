@@ -1,5 +1,12 @@
 import React from 'react';
+import { Link } from '../components/Link';
 
-const IndexPage = () => <h1 className='bg-blue-400'>Hello World!</h1>;
+const IndexPage = () => {
+  return (
+    <>
+      <Link to='/blog'>Hi</Link>
+    </>
+  );
+};
 
 export default IndexPage;
