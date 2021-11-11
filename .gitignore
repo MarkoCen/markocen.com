@@ -2,8 +2,6 @@
 .idea
 .cache
 
-public/
-
 # Logs
 logs
 *.log
