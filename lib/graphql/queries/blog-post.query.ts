@@ -1,8 +1,7 @@
 import slug from 'slug';
 
-import { BlogPost, BlogPostDetail } from '../../models/blog-post';
-
-import { graphqlClient } from './client';
+import { BlogPost, BlogPostDetail } from '../../../models/blog-post';
+import { graphqlClient } from '../client';
 
 export const getBlogPostBatch = async (
   cursor?: string,
@@ -10,7 +9,10 @@ export const getBlogPostBatch = async (
   cursor?: string;
   posts: BlogPost[];
 }> => {
-  const baseQuery = `first: 100, labels: "blog-post", orderBy: {field: CREATED_AT, direction: DESC}`;
+  const blogPostLabelName = 'blog-post';
+  const orderBy = '{field: CREATED_AT, direction: DESC}';
+  const batchCount = 100;
+  const baseQuery = `first: ${batchCount}, labels: "${blogPostLabelName}", orderBy: ${orderBy}`;
   const query = cursor ? `after: "${cursor}", ${baseQuery}` : baseQuery;
 
   const { repository } = await graphqlClient(`

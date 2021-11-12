@@ -3,11 +3,11 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 
 import { BlogPost, BlogPostDetail } from '../../models/blog-post';
-import { getBlogPostDetail, getAllBlogPosts } from '../../lib/graphql/queries';
 import { Markdown } from '../../components/Markdown/Markdown';
 import { defaultLabels } from '../../models/label';
 import { getPostPath } from '../../models/urls';
 import { TopNav } from '../../components/TopNav/TopNav';
+import { getAllBlogPosts, getBlogPostDetail } from '../../lib/graphql/queries/blog-post.query';
 
 interface Props {
   post: BlogPostDetail;

@@ -1,9 +1,9 @@
 import React from 'react';
 import { GetStaticPropsResult } from 'next';
 
-import { getAllBlogPosts } from '../lib/graphql/queries';
 import { BlogPost } from '../models/blog-post';
 import { getPostPath } from '../models/urls';
+import { getAllBlogPosts } from '../lib/graphql/queries/blog-post.query';
 
 interface Props {
   posts: BlogPost[];
@@ -29,7 +29,7 @@ const BlogPage = ({ posts }: Props) => {
     <>
       <div className='w-screen md:w-8/12 lg:w-4/12 px-2 py-12 mx-auto'>
         <h1 className='text-3xl font-bold'>RE_Sink</h1>
-        <p className='mt-2 mb-10'>A mini blog to share my thoughts and learnings</p>
+        <h2 className='mt-2 mb-10'>A mini blog to share my thoughts and learnings</h2>
         {posts.map(post => (
           <BlogPostCard key={post.id} {...post} />
         ))}
