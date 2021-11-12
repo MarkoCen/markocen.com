@@ -22,6 +22,7 @@
     "react-markdown": "^7.1.0",
     "remark-gfm": "^3.0.1",
     "react-syntax-highlighter": "^15.4.4",
+    "react-masonry-css": "^1.0.16",
     "@octokit/graphql": "^4.8.0",
     "slug": "^5.1.0"
   },

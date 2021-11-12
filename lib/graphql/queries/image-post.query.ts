@@ -2,7 +2,7 @@ import { ImagePost, ImagePostDetail } from '../../../models/image-post';
 import { graphqlClient } from '../client';
 
 const parseIssueComment = (commentText: string): { thumbnail: string } => {
-  const regex = /\[thumbnail\]{.+}\[thumbnail\]/im;
+  const regex = /\[thumbnail\](.+)\[\/thumbnail\]/im;
   const match = commentText.match(regex);
   const result = { thumbnail: '' };
   if (match && match[1]) {
