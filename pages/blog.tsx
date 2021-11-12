@@ -7,17 +7,30 @@ interface Props {
   posts: BlogPost[];
 }
 
+const BlogPostCard = React.memo((post: BlogPost) => (
+  <a href={`/p/${post.slug}`} className='group'>
+    <div className='px-6 py-6 rounded-xl mt-6 bg-gray-50 transition duration-200 pop group-hover:bg-green-100'>
+      <h2 className='text-lg'>{post.title}</h2>
+      <p className='text-sm italic text-gray-400'>
+        {Intl.DateTimeFormat(undefined, { year: 'numeric', month: 'short', day: '2-digit' }).format(
+          new Date(post.createdAt),
+        )}
+      </p>
+    </div>
+  </a>
+));
+
+BlogPostCard.displayName = 'BlogPostCard';
+
 const BlogPage = ({ posts }: Props) => {
   return (
-    <>
-      <ul>
-        {posts.map(post => (
-          <li key={post.id}>
-            <a href={`/blog/${post.slug}`}>{post.title}</a>
-          </li>
-        ))}
-      </ul>
-    </>
+    <div className='w-screen md:w-8/12 lg:w-4/12 px-2 py-12 mx-auto'>
+      <h1 className='text-3xl font-bold'>Web Sink</h1>
+      <p className='mt-2 mb-10'>A Mini Blog Used to Share My Thoughts and Learnings on Web Programming</p>
+      {posts.map(post => (
+        <BlogPostCard key={post.id} {...post} />
+      ))}
+    </div>
   );
 };
 
