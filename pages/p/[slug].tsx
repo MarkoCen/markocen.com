@@ -7,12 +7,15 @@ import { getBlogPostDetail, getAllBlogPosts } from '../../lib/graphql/queries';
 import { Markdown } from '../../components/Markdown/Markdown';
 import { defaultLabels } from '../../models/label';
 import { getPostPath } from '../../models/urls';
+import { TopNav } from '../../components/TopNav/TopNav';
 
 interface Props {
   post: BlogPostDetail;
 }
 
-const LabelTag = React.memo(({ name }: { name: string }) => <span>{name}</span>);
+const LabelTag = React.memo(({ name }: { name: string }) => (
+  <span className='bg-green-100 px-3 py-1 rounded-full text-xs'>{name}</span>
+));
 
 LabelTag.displayName = 'LabelTag';
 
@@ -35,18 +38,20 @@ const BlogPostPage = ({ post }: Props) => {
     return post.labels.filter(label => defaultLabels.indexOf(label.name) <= 0).map(label => label.name);
   }, [post.labels]);
 
+  const trimBodyText = (text: string) => text.slice(0, 150).replace(/\\n+/g, '');
+
   return (
     <>
       <NextSeo
         title={`${post.title} - Marko Cen`}
         canonical={getPostPath(post.slug, true)}
-        description={post.bodyText.slice(0, 150).replace(/\\n+/g, '')}
+        description={trimBodyText(post.bodyText)}
         openGraph={{
           title: `${post.title} - Marko Cen`,
           url: getPostPath(post.slug, true),
           site_name: 'RE_Sink by Marko',
           type: 'article',
-          description: post.bodyText.slice(0, 150).replace(/\\n+/g, ''),
+          description: trimBodyText(post.bodyText),
           locale: 'en_US',
           article: {
             publishedTime: post.createdAt,
@@ -56,17 +61,24 @@ const BlogPostPage = ({ post }: Props) => {
           },
         }}
       />
+      <TopNav />
       <div className='w-screen md:w-8/12 lg:w-4/12 px-2 py-12 mx-auto'>
         <article>
-          <h1 className='text-3xl font-bold mb-5'>{post.title}</h1>
-          <h2 title={`Last Updated on ${modifiedTime}`}>
-            {modifiedTime}
-            {displayLabels.map(l => (
-              <LabelTag key={l} name={l} />
-            ))}
+          <h1 className='text-3xl font-bold mb-0'>{post.title}</h1>
+          <h2 className='mt-0 mb-5' title={`Last Updated on ${modifiedTime}`}>
+            <span className='text-gray-400 text-sm mr-2'>{modifiedTime}</span>
           </h2>
           <Markdown markdown={post.body} />
         </article>
+
+        {displayLabels && displayLabels.length > 0 && (
+          <div>
+            <span className='font-bold'>Tags: </span>
+            {displayLabels.map(l => (
+              <LabelTag key={l} name={l} />
+            ))}
+          </div>
+        )}
       </div>
     </>
   );
