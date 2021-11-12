@@ -4,7 +4,6 @@ import { GetServerSidePropsContext, GetStaticPropsResult } from 'next';
 import { getBlogPostDetail } from '../../lib/graphql/queries';
 import { Markdown } from '../../components/Markdown/Markdown';
 import { NextSeo } from 'next-seo';
-import slug from 'slug';
 
 interface Props {
   post: BlogPostDetail;
