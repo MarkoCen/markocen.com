@@ -65,8 +65,9 @@ const BlogPostPage = ({ post }: Props) => {
       <div className='w-screen md:w-8/12 lg:w-4/12 px-2 py-12 mx-auto'>
         <article>
           <h1 className='text-3xl font-bold mb-0'>{post.title}</h1>
-          <h2 className='mt-0 mb-5' title={`Last Updated on ${modifiedTime}`}>
-            <span className='text-gray-400 text-sm mr-2'>{modifiedTime}</span>
+          <h2 className='mt-0 mb-5 flex justify-start items-center' title={`Last Updated on ${modifiedTime}`}>
+            <span className='flex justify-center items-center text-gray-400 text-sm mr-1'>Marko</span>
+            <span className='text-gray-400 text-sm mr-2'>- {modifiedTime}</span>
           </h2>
           <Markdown markdown={post.body} />
         </article>
