@@ -25,8 +25,8 @@ BlogPostCard.displayName = 'BlogPostCard';
 const BlogPage = ({ posts }: Props) => {
   return (
     <div className='w-screen md:w-8/12 lg:w-4/12 px-2 py-12 mx-auto'>
-      <h1 className='text-3xl font-bold'>Web Sink</h1>
-      <p className='mt-2 mb-10'>A Mini Blog Used to Share My Thoughts and Learnings on Web Programming</p>
+      <h1 className='text-3xl font-bold'>RE_Sink</h1>
+      <p className='mt-2 mb-10'>A mini blog to share my thoughts and learnings</p>
       {posts.map(post => (
         <BlogPostCard key={post.id} {...post} />
       ))}
