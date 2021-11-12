@@ -57,6 +57,7 @@ export const getBlogPostDetail = async (number: number): Promise<BlogPostDetail>
           id
           number
           body
+          bodyText
           labels (first: 100) {
             edges {
               node {
@@ -75,6 +76,8 @@ export const getBlogPostDetail = async (number: number): Promise<BlogPostDetail>
   issue.labels = (issue.labels?.edges || []).map(edge => ({
     ...edge.node,
   }));
+
+  issue.slug = `${slug(issue.title)}__${issue.number}`;
 
   return { ...issue };
 };

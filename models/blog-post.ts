@@ -10,4 +10,5 @@ export interface BlogPost {
 export interface BlogPostDetail extends BlogPost {
   labels: { color: string; name: string; id: string }[];
   body: string;
+  bodyText: string;
 }
