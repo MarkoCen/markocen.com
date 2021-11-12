@@ -12,4 +12,29 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'prettier',
   ],
+  rules: {
+    '@typescript-eslint/no-unused-vars': [
+      'warn',
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+      },
+    ],
+    'import/order': [
+      'error',
+      {
+        pathGroups: [
+          {
+            pattern: '(react|next)/**',
+            group: 'builtin',
+            position: 'before',
+          },
+        ],
+        pathGroupsExcludedImportTypes: [],
+        'newlines-between': 'always',
+        warnOnUnassignedImports: true,
+      },
+    ],
+  },
 };

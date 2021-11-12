@@ -1,8 +1,10 @@
 import slug from 'slug';
+
 import { BlogPost, BlogPostDetail } from '../../models/blog-post';
+
 import { graphqlClient } from './client';
 
-export const getBlogPosts = async (
+export const getBlogPostBatch = async (
   cursor?: string,
 ): Promise<{
   cursor?: string;
@@ -44,6 +46,24 @@ export const getBlogPosts = async (
       slug: `${slug(edge.node.title)}__${edge.node.number}`,
     })),
   };
+};
+
+export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
+  let posts: BlogPost[] = [];
+  let cursor = '';
+
+  const res = await getBlogPostBatch();
+
+  cursor = res.cursor;
+  posts = [...posts, ...res.posts];
+
+  while (cursor) {
+    const { posts: nextPosts, cursor: nextCursor } = await getBlogPostBatch(cursor);
+    cursor = nextCursor;
+    posts = [...posts, ...nextPosts];
+  }
+
+  return posts;
 };
 
 export const getBlogPostDetail = async (number: number): Promise<BlogPostDetail> => {

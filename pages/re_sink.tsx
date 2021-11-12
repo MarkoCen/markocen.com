@@ -1,14 +1,16 @@
-import { GetStaticPropsResult } from 'next';
 import React from 'react';
-import { getBlogPosts } from '../lib/graphql/queries';
+import { GetStaticPropsResult } from 'next';
+
+import { getAllBlogPosts } from '../lib/graphql/queries';
 import { BlogPost } from '../models/blog-post';
+import { getPostPath } from '../models/urls';
 
 interface Props {
   posts: BlogPost[];
 }
 
 const BlogPostCard = React.memo((post: BlogPost) => (
-  <a href={`/p/${post.slug}`} className='group'>
+  <a href={getPostPath(post.slug)} className='group'>
     <div className='px-6 py-6 rounded-xl mt-6 bg-gray-50 transition duration-200 pop group-hover:bg-green-100'>
       <h2 className='text-lg'>{post.title}</h2>
       <p className='text-sm italic text-gray-400'>
@@ -37,19 +39,7 @@ const BlogPage = ({ posts }: Props) => {
 };
 
 export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
-  let posts: BlogPost[] = [];
-  let cursor = '';
-
-  const res = await getBlogPosts();
-
-  cursor = res.cursor;
-  posts = [...posts, ...res.posts];
-
-  while (cursor) {
-    const { posts: nextPosts, cursor: nextCursor } = await getBlogPosts(cursor);
-    cursor = nextCursor;
-    posts = [...posts, ...nextPosts];
-  }
+  const posts: BlogPost[] = await getAllBlogPosts();
 
   return {
     props: {

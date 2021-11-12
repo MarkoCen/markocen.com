@@ -1,9 +1,8 @@
 import React from 'react';
-
+import { DefaultSeo } from 'next-seo';
 import { AppProps } from 'next/app';
 
 import '../styles/global.css';
-import { DefaultSeo } from 'next-seo';
 
 const MyBlog = ({ Component, pageProps }: AppProps) => {
   return (
