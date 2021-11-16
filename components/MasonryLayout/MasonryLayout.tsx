@@ -5,10 +5,10 @@ import styles from './MasonryLayout.module.scss';
 
 export const MasonryLayout: React.FC = ({ children }) => {
   const breakpointColumnsObj = {
-    default: 4,
+    default: 3,
     1100: 3,
-    700: 2,
-    500: 1,
+    700: 3,
+    500: 2,
   };
 
   return (

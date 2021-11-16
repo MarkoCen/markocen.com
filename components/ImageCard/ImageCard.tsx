@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
+import { useButton } from 'react-aria';
 
 interface Props {
   title: string;
@@ -7,19 +8,46 @@ interface Props {
   updatedAt: string;
 }
 
-export const ImageCard = React.memo(({ thumbnail, title, createdAt }: Props) => {
+export const ImageCard = React.memo(({ thumbnail, title }: Props) => {
+  const [showImage, setShowImage] = React.useState(false);
+
+  const imageStyles: CSSProperties = showImage ? {} : { width: 0, height: 0, zIndex: -1, opacity: 0 };
+
+  const ref = React.useRef();
+
+  const { buttonProps } = useButton(
+    {
+      isDisabled: false,
+      elementType: 'div',
+    },
+    ref,
+  );
+
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setShowImage(false);
+      const img = new Image();
+      img.onload = () => {
+        setShowImage(true);
+      };
+      img.src = thumbnail;
+    }
+  }, [thumbnail]);
+
   return (
-    <a href='#' className='group relative bg-gray-100 rounded-lg block'>
-      <div className='w-full aspect-w-1 aspect-h-1 rounded-t-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8'>
-        <img src={thumbnail} className='w-full h-full object-center object-cover opacity-80' />
+    <div
+      {...buttonProps}
+      className='relative group bg-gray-300 rounded-lg w-full aspect-w-1 aspect-h-1 overflow-hidden xl:aspect-w-16 xl:aspect-h-9 cursor-pointer'
+    >
+      <img
+        src={thumbnail}
+        className='absolute w-full h-full object-center object-cover opacity-75 transition-opacity pop'
+        style={imageStyles}
+      />
+      <div className='bg-gradient-to-b from-transparent to-gray-800 flex items-end opacity-0 transform transition pop translate-y-5 px-4 py-10 hover:opacity-100 hover:translate-y-0'>
+        <h3 className='font-bold text-2xl text-white'>{title}</h3>
       </div>
-      <h3 className='mt-4 text-sm text-gray-700 whitespace-pre-wrap'>{title}</h3>
-      <p className='mt-1 text-lg font-medium text-gray-900'>
-        {Intl.DateTimeFormat(undefined, { day: '2-digit', month: 'short', year: 'numeric' }).format(
-          new Date(createdAt),
-        )}
-      </p>
-    </a>
+    </div>
   );
 });
 

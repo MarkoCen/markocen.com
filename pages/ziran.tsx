@@ -27,41 +27,15 @@ const PageInternal = ({ posts }: Props) => {
       </div>
       <div className='w-screen md:w-12/12 lg:w-10/12 px-2 mx-auto'>
         <MasonryLayout>
-          <ImageCard
-            key={posts[0].id}
-            thumbnail={posts[0].thumbnail}
-            title={`dsjalk dkslajd io13iknf iodzkvll3 kjalfkv 31kl`}
-            createdAt={posts[0].createdAt}
-            updatedAt={posts[0].updatedAt}
-          />
-          <ImageCard
-            key={posts[0].id}
-            thumbnail={posts[0].thumbnail}
-            title={posts[0].title}
-            createdAt={posts[0].createdAt}
-            updatedAt={posts[0].updatedAt}
-          />
-          <ImageCard
-            key={posts[0].id}
-            thumbnail={posts[0].thumbnail}
-            title={posts[0].title}
-            createdAt={posts[0].createdAt}
-            updatedAt={posts[0].updatedAt}
-          />
-          <ImageCard
-            key={posts[0].id}
-            thumbnail={posts[0].thumbnail}
-            title={posts[0].title}
-            createdAt={posts[0].createdAt}
-            updatedAt={posts[0].updatedAt}
-          />
-          <ImageCard
-            key={posts[0].id}
-            thumbnail={posts[0].thumbnail}
-            title={posts[0].title}
-            createdAt={posts[0].createdAt}
-            updatedAt={posts[0].updatedAt}
-          />
+          {posts.map(post => (
+            <ImageCard
+              key={post.id}
+              thumbnail={post.thumbnail}
+              title={post.title}
+              createdAt={post.createdAt}
+              updatedAt={post.updatedAt}
+            />
+          ))}
         </MasonryLayout>
       </div>
       {isModalOpen && <Modal isOpen title='test' onClose={() => setModalOpen(false)} />}
