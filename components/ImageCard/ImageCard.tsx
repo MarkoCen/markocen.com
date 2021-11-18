@@ -47,7 +47,7 @@ export const ImageCard = React.memo(({ id, thumbnail, title, onClick }: Props) =
         className='absolute w-full h-full object-center object-cover opacity-75 transition-opacity pop'
         style={imageStyles}
       />
-      <div className='bg-gradient-to-b from-transparent to-gray-800 flex items-end opacity-0 transform transition pop translate-y-5 px-4 py-10 hover:opacity-100 hover:translate-y-0'>
+      <div className='bg-gradient-to-b from-transparent to-gray-800 flex items-end opacity-0 transform transition pop translate-y-5 px-4 py-6 hover:opacity-100 hover:translate-y-0'>
         <h3 className='font-bold text-2xl text-white'>{title}</h3>
       </div>
     </div>

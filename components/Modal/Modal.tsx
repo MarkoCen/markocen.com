@@ -90,7 +90,7 @@ export const Modal = (props: Props) => {
                     <div className='w-full flex items-center justify-end'>
                       <button
                         {...closeButtonProps}
-                        className='outline-none border-4 rounded-lg focus:border-green-300 border-green-100 text-gray-500 px-8 py-1'
+                        className='outline-none border-2 rounded-lg border-yellow-100 text-gray-500 px-8 py-1 hover:bg-yellow-100'
                       >
                         Close
                       </button>

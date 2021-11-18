@@ -34,6 +34,20 @@ const IndexPage = () => {
             !
           </p>
         </section>
+        <section className='flex justify-center items-center w-100 md:w-8/12 lg:w-4/12 mt-12'>
+          <a
+            href='/re_sink'
+            className='outline-none border-2 border-yellow-100 rounded-lg bg-transparent m-5 px-5 py-1 transition pop hover:bg-yellow-100 hover:border-yellow-100'
+          >
+            RE_Sink
+          </a>
+          <a
+            href='/ziran'
+            className='outline-none border-2 border-yellow-100 rounded-lg bg-transparent m-5 px-5 py-1 transition pop hover:bg-yellow-100 hover:border-yellow-100'
+          >
+            Ziran 自然
+          </a>
+        </section>
       </article>
     </>
   );

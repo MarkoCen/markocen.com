@@ -1,9 +1,11 @@
 import React from 'react';
 import { GetStaticPropsResult } from 'next';
+import { NextSeo } from 'next-seo';
 
 import { BlogPost } from '../models/blog-post';
-import { getPostPath } from '../models/urls';
+import { base, getPostPath } from '../models/urls';
 import { getAllBlogPosts } from '../lib/graphql/queries/blog-post.query';
+import { TopNav } from '../components/TopNav/TopNav';
 
 interface Props {
   posts: BlogPost[];
@@ -27,6 +29,20 @@ BlogPostCard.displayName = 'BlogPostCard';
 const BlogPage = ({ posts }: Props) => {
   return (
     <>
+      <NextSeo
+        title={`RE_Sink - Marko Cen`}
+        canonical={`${base}/re_sink`}
+        description='A mini blog to share my thoughts and learnings'
+        openGraph={{
+          title: `RE_Sink - Marko Cen`,
+          url: `${base}/re_sink`,
+          site_name: 'RE_Sink - Marko Cen',
+          type: 'website',
+          description: 'A mini blog to share my thoughts and learnings',
+          locale: 'en_US',
+        }}
+      />
+      <TopNav />
       <div className='w-screen md:w-8/12 lg:w-4/12 px-2 py-12 mx-auto'>
         <h1 className='text-3xl font-bold'>RE_Sink</h1>
         <h2 className='mt-2 mb-10'>A mini blog to share my thoughts and learnings</h2>
