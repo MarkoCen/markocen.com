@@ -1,7 +1,6 @@
 import React from 'react';
 import { FocusScope, OverlayContainer, useButton, useDialog, useModal, useOverlay, usePreventScroll } from 'react-aria';
-
-import { Markdown } from '../Markdown/Markdown';
+import dynamic from 'next/dynamic';
 
 interface Props {
   number: number;
@@ -11,6 +10,8 @@ interface Props {
   imageUrl: string;
   onClose: () => void;
 }
+
+const DynamicMarkdown = dynamic(() => import('../Markdown/Markdown').then(mod => mod.Markdown));
 
 export const Modal = (props: Props) => {
   const closeButtonRef = React.useRef();
@@ -84,7 +85,7 @@ export const Modal = (props: Props) => {
                     </div>
 
                     <div className='mt-4 mb-4 flex-grow'>
-                      <Markdown markdown={props.description} />
+                      <DynamicMarkdown markdown={props.description} />
                     </div>
 
                     <div className='w-full flex items-center justify-end'>
