@@ -5,10 +5,5 @@ export interface ImagePost {
   createdAt: string;
   updatedAt: string;
   thumbnail: string;
-}
-
-export interface ImagePostDetail extends ImagePost {
-  labels: { color: string; name: string; id: string }[];
-  body: string;
-  bodyText: string;
+  description: string;
 }

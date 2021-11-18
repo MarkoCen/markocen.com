@@ -1,4 +1,4 @@
-import { ImagePost, ImagePostDetail } from '../../../models/image-post';
+import { ImagePost } from '../../../models/image-post';
 import { graphqlClient } from '../client';
 
 const parseIssueComment = (commentText: string): { thumbnail: string } => {
@@ -35,10 +35,10 @@ export const getImagePostBatch = async (
               title
               id
               number
-              comments(first: 1) {
+              comments(first: 2) {
                 edges {
                   node {
-                    bodyText
+                    body
                   }
                 }
               }
@@ -60,7 +60,8 @@ export const getImagePostBatch = async (
     cursor: repository.issues.edges[repository.issues.edges.length - 1].cursor,
     posts: repository.issues.edges.map(edge => ({
       ...edge.node,
-      thumbnail: parseIssueComment((edge.node.comments.edges || [])[0]?.node.bodyText).thumbnail,
+      thumbnail: parseIssueComment((edge.node.comments.edges || [])[0]?.node.body).thumbnail,
+      description: (edge.node.comments.edges || [])[1]?.node.body || '',
     })),
   };
 };
@@ -81,46 +82,4 @@ export const getAllImagePosts = async (): Promise<ImagePost[]> => {
   }
 
   return posts;
-};
-
-export const getImagePostDetail = async (number: number): Promise<ImagePostDetail> => {
-  const { repository } = await graphqlClient(`
-    {
-      repository(owner: "markocen", name: "my-blog") {
-        issue(number: ${number}) {
-          createdAt
-          updatedAt
-          title
-          id
-          number
-          body
-          bodyText
-          comments(first: 1) {
-            edges {
-              node {
-                bodyText
-              }
-            }
-          }
-          labels (first: 100) {
-            edges {
-              node {
-                color
-                id
-                name
-              }
-            }
-          }
-        }
-      }
-    }
-  `);
-
-  const { issue } = repository;
-  issue.labels = (issue.labels?.edges || []).map(edge => ({
-    ...edge.node,
-  }));
-  issue.thumbnail = parseIssueComment((issue.comments.edges || [])[0]?.node.bodyText).thumbnail;
-
-  return { ...issue };
 };

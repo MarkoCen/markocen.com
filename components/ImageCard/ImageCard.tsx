@@ -2,13 +2,15 @@ import React, { CSSProperties } from 'react';
 import { useButton } from 'react-aria';
 
 interface Props {
+  id: string;
   title: string;
   thumbnail: string;
   createdAt: string;
   updatedAt: string;
+  onClick(id: string): void;
 }
 
-export const ImageCard = React.memo(({ thumbnail, title }: Props) => {
+export const ImageCard = React.memo(({ id, thumbnail, title, onClick }: Props) => {
   const [showImage, setShowImage] = React.useState(false);
 
   const imageStyles: CSSProperties = showImage ? {} : { width: 0, height: 0, zIndex: -1, opacity: 0 };
@@ -38,6 +40,7 @@ export const ImageCard = React.memo(({ thumbnail, title }: Props) => {
     <div
       {...buttonProps}
       className='relative group bg-gray-300 rounded-lg w-full aspect-w-1 aspect-h-1 overflow-hidden xl:aspect-w-16 xl:aspect-h-9 cursor-pointer'
+      onClick={() => onClick(id)}
     >
       <img
         src={thumbnail}

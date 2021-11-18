@@ -15,6 +15,19 @@ interface Props {
 
 const PageInternal = ({ posts }: Props) => {
   const [isModalOpen, setModalOpen] = React.useState(false);
+  const [openedPost, setOpenedPost] = React.useState<ImagePost | undefined>(undefined);
+
+  const onCardClick = React.useCallback(
+    (postId: string) => {
+      const post = posts.find(p => p.id === postId);
+
+      if (post) {
+        setModalOpen(true);
+        setOpenedPost(post);
+      }
+    },
+    [posts],
+  );
 
   return (
     <>
@@ -30,15 +43,26 @@ const PageInternal = ({ posts }: Props) => {
           {posts.map(post => (
             <ImageCard
               key={post.id}
+              id={post.id}
               thumbnail={post.thumbnail}
               title={post.title}
               createdAt={post.createdAt}
               updatedAt={post.updatedAt}
+              onClick={onCardClick}
             />
           ))}
         </MasonryLayout>
       </div>
-      {isModalOpen && <Modal isOpen title='test' onClose={() => setModalOpen(false)} />}
+      {isModalOpen && (
+        <Modal
+          number={openedPost.number}
+          title={openedPost.title}
+          description={openedPost.description}
+          postId={openedPost.id}
+          imageUrl={openedPost.thumbnail}
+          onClose={() => setModalOpen(false)}
+        />
+      )}
     </>
   );
 };
