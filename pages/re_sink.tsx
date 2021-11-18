@@ -12,8 +12,11 @@ interface Props {
 }
 
 const BlogPostCard = React.memo((post: BlogPost) => (
-  <a href={getPostPath(post.slug)} className='group'>
-    <div className='px-6 py-6 rounded-xl mt-6 bg-gray-50 transition duration-200 pop group-hover:bg-green-100'>
+  <a
+    href={getPostPath(post.slug)}
+    className='outline-none group block rounded-xl bg-gray-50 transition duration-200 pop group-hover:bg-green-100 focus:bg-green-100'
+  >
+    <div className='px-6 py-6 mt-6 rounded-xl transition duration-200 pop group-hover:bg-green-100'>
       <h2 className='text-lg'>{post.title}</h2>
       <p className='text-sm italic text-gray-400'>
         {Intl.DateTimeFormat(undefined, { year: 'numeric', month: 'short', day: '2-digit' }).format(
