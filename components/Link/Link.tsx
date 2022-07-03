@@ -8,6 +8,7 @@ interface Prop {
   target?: HTMLAnchorElement['target'];
   rel?: HTMLAnchorElement['rel'];
   disabled?: boolean;
+  children: React.ReactNode
 }
 
 const Link: React.FC<Prop> = props => {

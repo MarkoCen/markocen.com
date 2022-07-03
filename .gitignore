@@ -1,6 +1,7 @@
 #webstorm idea folder
 .idea
 .cache
+.swc
 
 # Logs
 logs
@@ -33,3 +34,4 @@ node_modules
 .next/
 
 .env
+.env.local

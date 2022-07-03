@@ -15,10 +15,11 @@ const DynamicMarkdown = dynamic(() => import('../Markdown/Markdown').then(mod =>
 
 export const Modal = (props: Props) => {
   const closeButtonRef = React.useRef();
+  const { onClose } = props;
 
   const { buttonProps: closeButtonProps } = useButton(
     {
-      onPress: () => props.onClose(),
+      onPress: () => onClose(),
       'aria-label': 'Close Dialog',
     },
     closeButtonRef,
@@ -29,7 +30,7 @@ export const Modal = (props: Props) => {
     {
       isDismissable: true,
       isOpen: true,
-      onClose: props.onClose,
+      onClose,
       isKeyboardDismissDisabled: false,
       shouldCloseOnBlur: false,
     },
@@ -50,7 +51,7 @@ export const Modal = (props: Props) => {
   React.useEffect(() => {
     const eventHandler = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        props.onClose();
+        onClose();
       }
     };
     window.addEventListener('keyup', eventHandler);
@@ -58,7 +59,7 @@ export const Modal = (props: Props) => {
     return () => {
       window.removeEventListener('keyup', eventHandler);
     };
-  }, []);
+  }, [onClose]);
 
   return (
     <OverlayContainer>
@@ -76,7 +77,7 @@ export const Modal = (props: Props) => {
             >
               <div className='bg-white'>
                 <div className='flex flex-col justify-center items-start lg:flex-row'>
-                  <img className='max-h-90vh opacity-90' src={props.imageUrl} />
+                  <img alt={props.title} className='max-h-90vh opacity-90' src={props.imageUrl} />
                   <div className='p-5 flex flex-col items-start text-left'>
                     <div className='w-full flex justify-between items-center'>
                       <h3 className='font-bold text-lg  text-gray-900' id='modal-title' {...titleProps}>
