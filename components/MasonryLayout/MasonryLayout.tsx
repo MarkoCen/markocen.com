@@ -3,7 +3,7 @@ import Masonry from 'react-masonry-css';
 
 import styles from './MasonryLayout.module.scss';
 
-export const MasonryLayout: React.FC = ({ children }) => {
+export const MasonryLayout: React.FC<{ children: React.ReactNode}> = ({ children }) => {
   const breakpointColumnsObj = {
     default: 3,
     1100: 3,
