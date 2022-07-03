@@ -62,7 +62,7 @@ const BlogPostPage = ({ post }: Props) => {
         }}
       />
       <TopNav />
-      <div className='w-screen md:w-8/12 lg:w-4/12 px-2 py-12 mx-auto'>
+      <div className='w-screen md:w-8/12 lg:w-6/12 px-2 py-12 mx-auto'>
         <article>
           <h1 className='text-3xl font-bold mb-0'>{post.title}</h1>
           <h2 className='mt-0 mb-5 flex justify-start items-center' title={`Last Updated on ${modifiedTime}`}>
