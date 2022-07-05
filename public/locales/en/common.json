@@ -1,0 +1,17 @@
+{
+  "index_title": "Hi, This is",
+  "first_name": "Marko",
+  "self_intro": {
+    "s1": "I am a full-stack software engineer with over <yearLink>{{years}} Years</yearLink> experiences, currently living in Irvine California with my wife. I <codingLink>LOVE coding</codingLink> and help the <helpLink>developer community</helpLink>!"
+  },
+  "seo_self_intro": "Hi This is Marko, I am a full-stack software engineer with over {{years}} years experiences and this is my personal website.",
+  "select_lang": "Select Language",
+  "ziran": {
+    "title": "Ziran 自然",
+    "intro": "Primordial state of all things"
+  },
+  "re_sink": {
+    "title": "Re_Sink",
+    "intro": "A mini blog to share my thoughts and learnings"
+  }
+}

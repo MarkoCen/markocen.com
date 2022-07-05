@@ -1,9 +1,9 @@
 import React from 'react';
-import { FocusScope, OverlayContainer, useButton, useDialog, useModal, useOverlay, usePreventScroll } from 'react-aria';
+import { Dialog, Transition } from '@headlessui/react';
 import dynamic from 'next/dynamic';
 
 interface Props {
-  number: number;
+  open: boolean;
   title: string;
   description: string;
   postId: string;
@@ -14,96 +14,55 @@ interface Props {
 const DynamicMarkdown = dynamic(() => import('../Markdown/Markdown').then(mod => mod.Markdown));
 
 export const Modal = (props: Props) => {
-  const closeButtonRef = React.useRef();
-  const { onClose } = props;
-
-  const { buttonProps: closeButtonProps } = useButton(
-    {
-      onPress: () => onClose(),
-      'aria-label': 'Close Dialog',
-    },
-    closeButtonRef,
-  );
-
-  const ref = React.useRef();
-  const { overlayProps, underlayProps } = useOverlay(
-    {
-      isDismissable: true,
-      isOpen: true,
-      onClose,
-      isKeyboardDismissDisabled: false,
-      shouldCloseOnBlur: false,
-    },
-    ref,
-  );
-
-  usePreventScroll();
-  const { modalProps } = useModal();
-
-  const { dialogProps, titleProps } = useDialog(
-    {
-      id: 'ziran-modal',
-      role: 'dialog',
-    },
-    ref,
-  );
-
-  React.useEffect(() => {
-    const eventHandler = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        onClose();
-      }
-    };
-    window.addEventListener('keyup', eventHandler);
-
-    return () => {
-      window.removeEventListener('keyup', eventHandler);
-    };
-  }, [onClose]);
+  const closeButtonRef = React.useRef<HTMLButtonElement>(null);
 
   return (
-    <OverlayContainer>
-      <div className='fixed z-10 inset-0 overflow-y-auto' {...underlayProps}>
-        <div className='flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0'>
-          <div className='fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity'></div>
+    <Transition
+      show={props.open}
+      enter='transition duration-100 ease-out'
+      enterFrom='transform scale-95 opacity-0'
+      enterTo='transform scale-100 opacity-100'
+      leave='transition duration-75 ease-out'
+      leaveFrom='transform scale-100 opacity-100'
+      leaveTo='transform scale-95 opacity-0'
+    >
+      <Dialog initialFocus={closeButtonRef} onClose={props.onClose} className='relative z-50'>
+        {/*backdrop*/}
+        <div className='fixed inset-0 bg-black/30' aria-hidden='true' />
 
-          <FocusScope contain>
-            <div
-              {...overlayProps}
-              {...dialogProps}
-              {...modalProps}
-              ref={ref}
-              className='outline-none inline-block bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-screen-lg'
-            >
-              <div className='bg-white'>
-                <div className='flex flex-col justify-center items-start lg:flex-row'>
-                  <img alt={props.title} className='max-h-90vh opacity-90' src={props.imageUrl} />
-                  <div className='p-5 flex flex-col items-start text-left'>
-                    <div className='w-full flex justify-between items-center'>
-                      <h3 className='font-bold text-lg  text-gray-900' id='modal-title' {...titleProps}>
-                        {props.title}
-                      </h3>
-                    </div>
+        {/* scrollable container*/}
+        <div className='fixed inset-0 flex items-center justify-center p-4 overflow-y-auto'>
+          <div className='flex items-center justify-center'>
+            <Dialog.Panel className='mx-auto max-w-screen-lg rounded bg-white'>
+              <div className='flex flex-col justify-center items-start lg:flex-row'>
+                <img alt={props.title} className='max-h-90vh opacity-90 rounded-tl rounded-bl' src={props.imageUrl} />
+                <div className='p-5 flex flex-col items-start text-left'>
+                  <div className='w-full flex justify-between items-center'>
+                    <Dialog.Title className='font-bold text-lg  text-gray-900'>{props.title}</Dialog.Title>
+                  </div>
 
-                    <div className='mt-4 mb-4 flex-grow'>
+                  <div className='mt-4 mb-4 flex-grow'>
+                    <Dialog.Description>
                       <DynamicMarkdown markdown={props.description} />
-                    </div>
+                    </Dialog.Description>
+                  </div>
 
-                    <div className='w-full flex items-center justify-end'>
-                      <button
-                        {...closeButtonProps}
-                        className='outline-none border-2 rounded-lg border-yellow-100 text-gray-500 px-8 py-1 hover:bg-yellow-100'
-                      >
-                        Close
-                      </button>
-                    </div>
+                  <div className='w-full flex items-center justify-end'>
+                    <button
+                      ref={closeButtonRef}
+                      type='button'
+                      onClick={props.onClose}
+                      className='outline-none rounded-lg bg-gray-50 text-gray-500 px-8 py-1 hover:bg-green-100'
+                    >
+                      Close
+                    </button>
                   </div>
                 </div>
               </div>
-            </div>
-          </FocusScope>
+            </Dialog.Panel>
+          </div>
         </div>
-      </div>
-    </OverlayContainer>
+      </Dialog>
+    </Transition>
   );
 };
