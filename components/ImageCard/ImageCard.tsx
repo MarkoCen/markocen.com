@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import { useButton } from 'react-aria';
+import { useButton } from '@react-aria/button';
 
 interface Props {
   id: string;
@@ -43,6 +43,7 @@ export const ImageCard = React.memo(({ id, thumbnail, title, onClick }: Props) =
       onClick={() => onClick(id)}
     >
       <img
+        alt={title}
         src={thumbnail}
         className='absolute w-full h-full object-center object-cover opacity-75 transition-opacity pop'
         style={imageStyles}

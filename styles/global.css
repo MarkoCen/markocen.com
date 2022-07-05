@@ -3,3 +3,7 @@
 @tailwind components;
 
 @tailwind utilities;
+
+div[data-overlay-container] {
+  @apply w-full flex flex-col items-center justify-center;
+}

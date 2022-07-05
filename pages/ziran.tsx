@@ -1,12 +1,12 @@
-import { OverlayProvider } from '@react-aria/overlays';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import React from 'react';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 
 import { ImageCard } from '../components/ImageCard/ImageCard';
 import { MasonryLayout } from '../components/MasonryLayout/MasonryLayout';
 import { Modal } from '../components/Modal/Modal';
-import { TopNav } from '../components/TopNav/TopNav';
 import { getAllImagePosts } from '../lib/graphql/queries/image-post.query';
 import { ImagePost } from '../models/image-post';
 import { base } from '../models/urls';
@@ -18,6 +18,8 @@ interface Props {
 const PageInternal = ({ posts }: Props) => {
   const [isModalOpen, setModalOpen] = React.useState(false);
   const [openedPost, setOpenedPost] = React.useState<ImagePost | undefined>(undefined);
+
+  const { t, i18n } = useTranslation('common');
 
   const onCardClick = React.useCallback(
     (postId: string) => {
@@ -34,26 +36,21 @@ const PageInternal = ({ posts }: Props) => {
   return (
     <>
       <NextSeo
-        title={`Ziran 自然 - Marko Cen`}
+        title={`${t('ziran.title')} - Marko Cen`}
         canonical={`${base}/ziran`}
-        description='Primordial state of all things'
+        description={t('ziran.intro')}
         openGraph={{
-          title: `Ziran 自然 - Marko Cen`,
+          title: `${t('ziran.title')} - Marko Cen`,
           url: `${base}/ziran`,
-          site_name: 'Ziran 自然',
+          site_name: t('ziran.title'),
           type: 'website',
-          description: 'Primordial state of all things',
-          locale: 'en_US',
+          description: t('ziran.intro'),
+          locale: i18n.language,
         }}
       />
-      <TopNav />
-      <div className='w-screen md:w-12/12 lg:w-10/12 px-2 pt-12 mx-auto'>
-        <h1 className='text-3xl font-bold'>Ziran 自然</h1>
-        <h2 className='mt-2 mb-10'>
-          <i>Primordial</i> state of all things
-        </h2>
-      </div>
-      <div className='w-screen md:w-12/12 lg:w-10/12 px-2 mx-auto'>
+      <div className='w-full lg:w-10/12'>
+        <h1 className='text-3xl font-bold'>{t('ziran.title')}</h1>
+        <h2 className='mt-2 mb-10'>{t('ziran.intro')}</h2>
         <MasonryLayout>
           {posts.map(post => (
             <ImageCard
@@ -68,16 +65,14 @@ const PageInternal = ({ posts }: Props) => {
           ))}
         </MasonryLayout>
       </div>
-      {isModalOpen && (
-        <Modal
-          number={openedPost.number}
-          title={openedPost.title}
-          description={openedPost.description}
-          postId={openedPost.id}
-          imageUrl={openedPost.thumbnail}
-          onClose={() => setModalOpen(false)}
-        />
-      )}
+      <Modal
+        open={isModalOpen}
+        title={openedPost?.title}
+        description={openedPost?.description}
+        postId={openedPost?.id}
+        imageUrl={openedPost?.thumbnail}
+        onClose={() => setModalOpen(false)}
+      />
     </>
   );
 };
@@ -85,18 +80,17 @@ const PageInternal = ({ posts }: Props) => {
 const ZiranPage = (props: Props) => {
   return (
     <>
-      <OverlayProvider>
-        <PageInternal {...props} />
-      </OverlayProvider>
+      <PageInternal {...props} />
     </>
   );
 };
 
-export const getStaticProps: GetStaticProps<Props> = async () => {
+export const getStaticProps: GetStaticProps<Props> = async ({ locale }) => {
   const posts = await getAllImagePosts();
 
   return {
     props: {
+      ...(await serverSideTranslations(locale, ['common'])),
       posts,
     },
   };

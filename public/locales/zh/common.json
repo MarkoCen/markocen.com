@@ -1,0 +1,17 @@
+{
+  "index_title": "嗨 我是",
+  "first_name": "Marko",
+  "self_intro": {
+    "s1": "我是一名具有<yearLink>{{years}}年</yearLink>开发经验的全栈工程师, 目前我和我的家人住在美国加州尔湾. 我十分喜欢<codingLink>写代码</codingLink>, 同时也喜欢帮助<helpLink>开发者社区</helpLink>!"
+  },
+  "seo_self_intro": "嗨 我是Marko, 我是一名具有{{years}}年开发经验的全栈工程师, 这是我的个人网站.",
+  "select_lang": "选择语言",
+  "ziran": {
+    "title": "Ziran 自然",
+    "intro": "记录事物的所有态"
+  },
+  "re_sink": {
+    "title": "Re_Sink",
+    "intro": "分享生活和学习的迷你博客"
+  }
+}

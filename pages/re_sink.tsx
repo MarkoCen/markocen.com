@@ -1,11 +1,12 @@
 import React from 'react';
 import { GetStaticPropsResult } from 'next';
 import { NextSeo } from 'next-seo';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 
 import { BlogPost } from '../models/blog-post';
 import { base, getPostPath } from '../models/urls';
 import { getAllBlogPosts } from '../lib/graphql/queries/blog-post.query';
-import { TopNav } from '../components/TopNav/TopNav';
 
 interface Props {
   posts: BlogPost[];
@@ -30,25 +31,26 @@ const BlogPostCard = React.memo((post: BlogPost) => (
 BlogPostCard.displayName = 'BlogPostCard';
 
 const BlogPage = ({ posts }: Props) => {
+  const { t, i18n } = useTranslation('common');
+
   return (
     <>
       <NextSeo
-        title={`RE_Sink - Marko Cen`}
+        title={`${t('re_sink.title')} - Marko Cen`}
         canonical={`${base}/re_sink`}
-        description='A mini blog to share my thoughts and learnings'
+        description={t('re_sink.intro')}
         openGraph={{
-          title: `RE_Sink - Marko Cen`,
+          title: `${t('re_sink.title')} - Marko Cen`,
           url: `${base}/re_sink`,
-          site_name: 'RE_Sink - Marko Cen',
+          site_name: `${t('re_sink.title')} - Marko Cen`,
           type: 'website',
-          description: 'A mini blog to share my thoughts and learnings',
-          locale: 'en_US',
+          description: t('re_sink.intro'),
+          locale: i18n.language,
         }}
       />
-      <TopNav />
-      <div className='w-screen md:w-8/12 lg:w-4/12 px-2 py-12 mx-auto'>
-        <h1 className='text-3xl font-bold'>RE_Sink</h1>
-        <h2 className='mt-2 mb-10'>A mini blog to share my thoughts and learnings</h2>
+      <div className='w-full md:w-12/12 lg:w-6/12'>
+        <h1 className='text-3xl font-bold'>{t('re_sink.title')}</h1>
+        <h2 className='mt-2 mb-10'>{t('re_sink.intro')}</h2>
         {posts.map(post => (
           <BlogPostCard key={post.id} {...post} />
         ))}
@@ -57,11 +59,12 @@ const BlogPage = ({ posts }: Props) => {
   );
 };
 
-export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
+export async function getStaticProps({ locale }): Promise<GetStaticPropsResult<Props>> {
   const posts: BlogPost[] = await getAllBlogPosts();
 
   return {
     props: {
+      ...(await serverSideTranslations(locale, ['common'])),
       posts,
     },
   };

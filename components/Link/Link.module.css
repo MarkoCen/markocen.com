@@ -1,27 +1,23 @@
 .link {
-  @apply relative mx-1 outline-none;
+  @apply relative px-1 outline-none;
+  @apply text-green-600;
+  @apply transition-all ;
 }
 
-.link::after {
-  content: '';
-  z-index: -1;
-  top: 60%;
-  left: -0.2rem;
-  right: -0.2rem;
-  bottom: 0;
-  transition: top 0.2s cubic-bezier(0, 0.8, 0.13, 1);
-  @apply absolute bg-green-200 rounded-lg;
-}
+/*.link::after {*/
+/*  content: '';*/
+/*  z-index: -1;*/
+/*  top: 60%;*/
+/*  left: -0.2rem;*/
+/*  right: -0.2rem;*/
+/*  bottom: 0;*/
+/*  transition: top 0.2s cubic-bezier(0, 0.8, 0.13, 1);*/
+/*  @apply absolute bg-green-200 rounded-lg;*/
+/*}*/
 
 .link:hover,
 .link:focus,
 .link:focus-visible {
-  @apply text-green-700;
-}
-
-.link:hover::after,
-.link:focus::after,
-.link:focus-visible::after {
-  top: 5%;
-  @apply rounded-lg bg-green-300;
+  @apply bg-green-600;
+  @apply text-white;
 }

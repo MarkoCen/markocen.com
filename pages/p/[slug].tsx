@@ -1,12 +1,12 @@
 import React from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { BlogPost, BlogPostDetail } from '../../models/blog-post';
 import { Markdown } from '../../components/Markdown/Markdown';
 import { defaultLabels } from '../../models/label';
 import { getPostPath } from '../../models/urls';
-import { TopNav } from '../../components/TopNav/TopNav';
 import { getAllBlogPosts, getBlogPostDetail } from '../../lib/graphql/queries/blog-post.query';
 
 interface Props {
@@ -61,8 +61,7 @@ const BlogPostPage = ({ post }: Props) => {
           },
         }}
       />
-      <TopNav />
-      <div className='w-screen md:w-8/12 lg:w-6/12 px-2 py-12 mx-auto'>
+      <div className='w-full md:w-8/12 lg:w-6/12 pb-48'>
         <article>
           <h1 className='text-3xl font-bold mb-0'>{post.title}</h1>
           <h2 className='mt-0 mb-5 flex justify-start items-center' title={`Last Updated on ${modifiedTime}`}>
@@ -100,7 +99,10 @@ export const getStaticProps: GetStaticProps<Props, { slug: string }> = async con
   const post = await getBlogPostDetail(Number(number));
 
   return {
-    props: { post },
+    props: {
+      ...(await serverSideTranslations(context.locale, ['common'])),
+      post,
+    },
   };
 };
 
