@@ -3,8 +3,6 @@ import { useRouter } from 'next/router';
 import { Menu } from '@headlessui/react';
 import { useTranslation } from 'next-i18next';
 
-import { i18n } from '../../next-i18next.config';
-
 const locales = {
   en: 'English',
   zh: '中文',
@@ -33,7 +31,7 @@ export const TranslateDropdown = () => {
         </svg>
       </Menu.Button>
       <Menu.Items className='absolute flex flex-col bg-white' as='ul'>
-        {i18n.locales.map(locale => (
+        {Object.keys(locales).map(locale => (
           <Menu.Item key={locale} className='my-2 cursor-pointer' as='li'>
             {({ active }) => (
               <a
