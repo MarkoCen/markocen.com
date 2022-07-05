@@ -8,6 +8,7 @@ import { Markdown } from '../../components/Markdown/Markdown';
 import { defaultLabels } from '../../models/label';
 import { getPostPath } from '../../models/urls';
 import { getAllBlogPosts, getBlogPostDetail } from '../../lib/graphql/queries/blog-post.query';
+import nextI18nNextConfig from '../../next-i18next.config.js';
 
 interface Props {
   post: BlogPostDetail;
@@ -100,7 +101,7 @@ export const getStaticProps: GetStaticProps<Props, { slug: string }> = async con
 
   return {
     props: {
-      ...(await serverSideTranslations(context.locale, ['common'])),
+      ...(await serverSideTranslations(context.locale, ['common'], nextI18nNextConfig)),
       post,
     },
   };
