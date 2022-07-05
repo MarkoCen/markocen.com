@@ -10,6 +10,7 @@ import { Modal } from '../components/Modal/Modal';
 import { getAllImagePosts } from '../lib/graphql/queries/image-post.query';
 import { ImagePost } from '../models/image-post';
 import { base } from '../models/urls';
+import nextI18nNextConfig from '../next-i18next.config.js';
 
 interface Props {
   posts: ImagePost[];
@@ -90,7 +91,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ locale }) => {
 
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'])),
+      ...(await serverSideTranslations(locale, ['common'], nextI18nNextConfig)),
       posts,
     },
   };

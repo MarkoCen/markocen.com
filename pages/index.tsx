@@ -3,6 +3,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Trans, useTranslation } from 'next-i18next';
 
 import { Link } from '../components/Link/Link';
+import nextI18NextConfig from '../next-i18next.config.js';
 
 const IndexPage = () => {
   const { t } = useTranslation('common');
@@ -65,7 +66,7 @@ const IndexPage = () => {
 export const getStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'])),
+      ...(await serverSideTranslations(locale, ['common'], nextI18NextConfig)),
     },
   };
 };

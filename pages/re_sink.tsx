@@ -7,6 +7,7 @@ import { useTranslation } from 'next-i18next';
 import { BlogPost } from '../models/blog-post';
 import { base, getPostPath } from '../models/urls';
 import { getAllBlogPosts } from '../lib/graphql/queries/blog-post.query';
+import nextI18NextConfig from '../next-i18next.config.js';
 
 interface Props {
   posts: BlogPost[];
@@ -64,7 +65,7 @@ export async function getStaticProps({ locale }): Promise<GetStaticPropsResult<P
 
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'])),
+      ...(await serverSideTranslations(locale, ['common'], nextI18NextConfig)),
       posts,
     },
   };
