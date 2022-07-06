@@ -72,6 +72,8 @@ const PageInternal = ({ posts }: Props) => {
         description={openedPost?.description}
         postId={openedPost?.id}
         imageUrl={openedPost?.thumbnail}
+        imageHeight={openedPost?.imgHeight}
+        imageWidth={openedPost?.imgWidth}
         onClose={() => setModalOpen(false)}
       />
     </>
