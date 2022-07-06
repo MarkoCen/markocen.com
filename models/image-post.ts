@@ -5,5 +5,7 @@ export interface ImagePost {
   createdAt: string;
   updatedAt: string;
   thumbnail: string;
+  imgHeight: number;
+  imgWidth: number;
   description: string;
 }

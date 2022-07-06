@@ -13,5 +13,17 @@
   "re_sink": {
     "title": "Re_Sink",
     "intro": "A mini blog to share my thoughts and learnings"
+  },
+  "showcase": {
+    "title": "Showcase",
+    "intro": "A showcase includes my recent works",
+    "bubble_nation": {
+      "name": "Bubble Nation",
+      "desc": "Bubble Nation is a popular bubble tea shop located in Boston area. As the tech co-founder, I was responsible for creating the business website and its related internal systems. Customers can use the website to place orders and pick up the drinks at the store. Since the Covid lockdown, the traffic of the website has increased significantly, and more and more customers have begun to prefer to use the online order system. Until today, nearly half of the daily orders are placed through the website."
+    },
+    "345tool": {
+      "name": "345tool.com",
+      "desc": "This is another website I created independently. 345tool.com is a website that provides a series of productivity tools that software engineer often use in their daily work. Since established in 2019, the website traffic has been steadily increasing every year. At present, the number of monthly visits has exceeded half million."
+    }
   }
 }

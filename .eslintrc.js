@@ -13,6 +13,7 @@ module.exports = {
     'prettier',
   ],
   rules: {
+    'react/prop-types': 0,
     '@typescript-eslint/no-unused-vars': [
       'warn',
       {

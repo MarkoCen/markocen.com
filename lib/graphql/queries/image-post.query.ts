@@ -1,12 +1,22 @@
 import { ImagePost } from '../../../models/image-post';
 import { graphqlClient } from '../client';
 
-const parseIssueComment = (commentText: string): { thumbnail: string } => {
+const parseIssueComment = (commentText: string): { thumbnail: string; width: number; height: number } => {
   const regex = /\[thumbnail\](.+)\[\/thumbnail\]/im;
+  const sizeRegex = /\[size\](.+)\[\/size\]/im;
   const match = commentText.match(regex);
-  const result = { thumbnail: '' };
+  const sizeMatch = commentText.match(sizeRegex);
+  const result = { thumbnail: '', width: 0, height: 0 };
   if (match && match[1]) {
     result.thumbnail = match[1].trim();
+  }
+  if (sizeMatch && sizeMatch[1]) {
+    const [width, height] = sizeMatch[1]
+      .trim()
+      .split('x')
+      .map(s => Number(s.trim()));
+    result.width = width;
+    result.height = height;
   }
   return result;
 };
@@ -58,11 +68,16 @@ export const getImagePostBatch = async (
 
   return {
     cursor: repository.issues.edges[repository.issues.edges.length - 1].cursor,
-    posts: repository.issues.edges.map(edge => ({
-      ...edge.node,
-      thumbnail: parseIssueComment((edge.node.comments.edges || [])[0]?.node.body).thumbnail,
-      description: (edge.node.comments.edges || [])[1]?.node.body || '',
-    })),
+    posts: repository.issues.edges.map(edge => {
+      const { thumbnail, height, width } = parseIssueComment((edge.node.comments.edges || [])[0]?.node.body);
+      return {
+        ...edge.node,
+        thumbnail,
+        imgHeight: height,
+        imgWidth: width,
+        description: (edge.node.comments.edges || [])[1]?.node.body || '',
+      };
+    }),
   };
 };
 

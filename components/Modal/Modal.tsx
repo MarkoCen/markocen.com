@@ -8,6 +8,8 @@ interface Props {
   description: string;
   postId: string;
   imageUrl: string;
+  imageHeight: number;
+  imageWidth: number;
   onClose: () => void;
 }
 
@@ -15,6 +17,8 @@ const DynamicMarkdown = dynamic(() => import('../Markdown/Markdown').then(mod =>
 
 export const Modal = (props: Props) => {
   const closeButtonRef = React.useRef<HTMLButtonElement>(null);
+
+  const isHorizontal = props.imageWidth ? props.imageWidth >= props.imageHeight : false;
 
   return (
     <Transition
@@ -32,9 +36,9 @@ export const Modal = (props: Props) => {
 
         {/* scrollable container*/}
         <div className='fixed inset-0 flex items-center justify-center p-4 overflow-y-auto'>
-          <div className='flex items-center justify-center'>
+          <div className={`flex items-center justify-center ${isHorizontal ? 'md:mt-48' : ''}`}>
             <Dialog.Panel className='mx-auto max-w-screen-lg rounded bg-white'>
-              <div className='flex flex-col justify-center items-start lg:flex-row'>
+              <div className={`flex flex-col justify-center items-start ${!isHorizontal ? 'lg:flex-row' : ''}`}>
                 <img alt={props.title} className='max-h-90vh opacity-90 rounded-tl rounded-bl' src={props.imageUrl} />
                 <div className='p-5 flex flex-col items-start text-left'>
                   <div className='w-full flex justify-between items-center'>
