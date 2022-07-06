@@ -1,2 +1,1 @@
-# my-blog
-My personal blog site
+my personal site hosted on Netlify
