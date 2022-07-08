@@ -24,6 +24,9 @@ export const DarkModeSwitch = React.memo(() => {
 
       window.localStorage.setItem('theme', theme);
       setMode(theme);
+      setTimeout(() => {
+        window.document.querySelector('body').classList.remove('opacity-0');
+      }, 100);
     }
   }, [setMode]);
 

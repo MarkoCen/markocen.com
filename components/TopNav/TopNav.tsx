@@ -74,7 +74,7 @@ export const TopNav = React.memo(() => {
   }, [pathname]);
 
   return (
-    <header className='flex px-4 md:px-8 py-3 bg-white dark:bg-zinc-900 w-screen justify-between items-center fixed'>
+    <header className='flex px-4 md:px-8 py-3 bg-white dark:bg-zinc-900 transition-colors duration-200 ease-out w-screen justify-between items-center fixed'>
       <div>
         {actions.showHomeLink && (
           <Link to='/' className='rounded-full w-12'>

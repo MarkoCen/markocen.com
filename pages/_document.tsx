@@ -17,7 +17,8 @@ class MyDocument extends Document {
           <link rel='shortcut icon' href='/favicon.ico' type='image/x-icon' />
           <link rel='icon' href='/favicon.ico' type='image/x-icon' />
         </Head>
-        <body className='font-sans text-gray-700 dark:text-zinc-100 dark:bg-zinc-900 transition-colors duration-200 ease-out'>
+        <body className='font-sans text-gray-700 dark:text-zinc-100 transition-colors transition-opacity duration-200 ease-out opacity-0'>
+          <div className='fixed w-screen h-screen -z-50 bg-white dark:bg-zinc-900 transition-colors duration-200 ease-out' />
           <Main />
           <NextScript />
         </body>
