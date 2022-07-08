@@ -37,7 +37,7 @@ export const Modal = (props: Props) => {
         {/* scrollable container*/}
         <div className='fixed inset-0 flex items-center justify-center p-4 overflow-y-auto'>
           <div className={`flex items-center justify-center ${isHorizontal ? 'md:mt-48' : ''}`}>
-            <Dialog.Panel className='mx-auto max-w-screen-lg rounded bg-white'>
+            <Dialog.Panel className='mx-auto max-w-screen-lg rounded bg-white dark:bg-zinc-900'>
               <div className={`flex flex-col justify-center items-start ${!isHorizontal ? 'lg:flex-row' : ''}`}>
                 <img alt={props.title} className='max-h-90vh opacity-90 rounded-tl rounded-bl' src={props.imageUrl} />
                 <div className='p-5 flex flex-col items-start text-left'>
@@ -56,7 +56,7 @@ export const Modal = (props: Props) => {
                       ref={closeButtonRef}
                       type='button'
                       onClick={props.onClose}
-                      className='outline-none rounded-lg bg-gray-50 text-gray-500 px-8 py-1 hover:bg-green-100'
+                      className='outline-none rounded-lg bg-gray-100 px-8 py-1 hover:bg-green-100 dark:text-zinc-100 dark:bg-zinc-800 dark:hover:bg-zinc-600'
                     >
                       Close
                     </button>

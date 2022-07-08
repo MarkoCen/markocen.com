@@ -6,6 +6,10 @@
   },
   "seo_self_intro": "嗨 我是Marko, 我是一名具有{{years}}年开发经验的全栈工程师, 这是我的个人网站.",
   "select_lang": "选择语言",
+  "top_nav": {
+    "dark_theme": "深色模式",
+    "light_theme": "浅色模式"
+  },
   "ziran": {
     "title": "Ziran 自然",
     "intro": "记录事物的所有态"

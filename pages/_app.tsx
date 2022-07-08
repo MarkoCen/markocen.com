@@ -3,7 +3,7 @@ import { DefaultSeo } from 'next-seo';
 import { AppProps } from 'next/app';
 import { appWithTranslation, useTranslation } from 'next-i18next';
 
-import '../styles/global.css';
+import '../styles/global.scss';
 import { TopNav } from '../components/TopNav/TopNav';
 
 const MyBlog = ({ Component, pageProps }: AppProps) => {
@@ -13,7 +13,7 @@ const MyBlog = ({ Component, pageProps }: AppProps) => {
     <>
       <DefaultSeo title='Marko Cen' description={t('seo_self_intro', { years: new Date().getFullYear() - 2013 })} />
       <TopNav />
-      <div className='w-full px-2 pt-20 md:pt-32 mx-auto flex justify-center items-center'>
+      <div className='w-full px-6 pt-20 md:pt-32 mx-auto flex justify-center items-center'>
         <Component {...pageProps} />
       </div>
     </>

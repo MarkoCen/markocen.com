@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 
 import { Link } from '../Link/Link';
 import { TranslateDropdown } from '../TranslateDropdown/TranslateDropdown';
+import { DarkModeSwitch } from '../DarkModeSwitch/DarkModeSwitch';
 
 const ActionIcon: React.FC<{ children: React.ReactNode; to: string; title: string }> = ({ children, to, title }) => {
   return (
@@ -73,7 +74,7 @@ export const TopNav = React.memo(() => {
   }, [pathname]);
 
   return (
-    <header className='flex px-4 md:px-8 py-3 bg-white md:bg-transparent w-screen justify-between items-center fixed'>
+    <header className='flex px-4 md:px-8 py-3 bg-white dark:bg-zinc-900 w-screen justify-between items-center fixed'>
       <div>
         {actions.showHomeLink && (
           <Link to='/' className='rounded-full w-12'>
@@ -85,6 +86,7 @@ export const TopNav = React.memo(() => {
         {actions.showI18n && <TranslateDropdown />}
         {actions.showBlogLink && <ReSinkIcon />}
         {actions.showGalleryLink && <CameraIcon />}
+        <DarkModeSwitch />
       </div>
     </header>
   );

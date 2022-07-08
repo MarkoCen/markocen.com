@@ -6,6 +6,10 @@
   },
   "seo_self_intro": "Hi This is Marko, I am a full-stack software engineer with over {{years}} years experiences and this is my personal website.",
   "select_lang": "Select Language",
+  "top_nav": {
+    "dark_theme": "Dark Mode",
+    "light_theme": "Light Mode"
+  },
   "ziran": {
     "title": "Ziran 自然",
     "intro": "Primordial state of all things"
