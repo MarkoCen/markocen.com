@@ -3,8 +3,6 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 
-import styles from './Markdown.module.scss';
-
 interface Props {
   markdown: string;
 }
@@ -12,7 +10,7 @@ interface Props {
 export const Markdown: React.FC<Props> = ({ markdown }) => {
   return (
     <ReactMarkdown
-      className={styles.post}
+      className='post'
       remarkPlugins={[remarkGfm]}
       components={{
         code({ inline, className, children, ...props }) {

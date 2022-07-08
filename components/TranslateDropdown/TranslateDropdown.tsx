@@ -30,7 +30,7 @@ export const TranslateDropdown = () => {
           />
         </svg>
       </Menu.Button>
-      <Menu.Items className='absolute flex flex-col bg-white' as='ul'>
+      <Menu.Items className='absolute flex flex-col bg-transparent' as='ul'>
         {Object.keys(locales).map(locale => (
           <Menu.Item key={locale} className='my-2 cursor-pointer' as='li'>
             {({ active }) => (

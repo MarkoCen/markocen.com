@@ -1,3 +1,15 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+@tailwind variants;
+
+div[data-overlay-container] {
+  @apply w-full flex flex-col items-center justify-center;
+}
+
 .post {
   h1 {
     @apply text-2xl mb-2;
@@ -18,7 +30,7 @@
   }
 
   code {
-    @apply bg-gray-100 px-1 rounded-md;
+    @apply bg-gray-100 px-1 rounded-md dark:bg-zinc-700;
   }
 
   ul {
@@ -34,7 +46,10 @@
   }
 
   pre {
-    @apply mb-8;
+    div {
+      @apply rounded;
+    }
+    @apply mb-8 rounded-lg;
   }
 
   table {

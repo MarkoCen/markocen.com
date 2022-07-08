@@ -15,7 +15,7 @@ interface Props {
 }
 
 const LabelTag = React.memo(({ name }: { name: string }) => (
-  <span className='bg-green-100 px-3 py-1 rounded-full text-xs'>{name}</span>
+  <span className='bg-green-100 px-3 py-1 rounded-full text-xs dark:bg-zinc-700'>{name}</span>
 ));
 
 LabelTag.displayName = 'LabelTag';
